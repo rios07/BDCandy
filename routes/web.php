@@ -13,4 +13,12 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('/mensajes/{mensaje}','MensajeController@show');
+Route::get('/acerca','PagesController@about');
+
+Route::get('/Clientes/','PagesController@clientes');
+
+Route::get('/Clientes/ClientesNaturales','ClienteNaturalController@index');
+
+Route::get('/Clientes/ClientesJuridicos','ClienteJuridicoController@index');
+
+Route::get('/Clientes/ClientesJuridicos/CrearClienteJuridico','ClienteJuridicoController@create');
