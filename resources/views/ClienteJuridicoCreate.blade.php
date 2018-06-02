@@ -21,11 +21,8 @@
                 <input type="password" name="password" id="password" placeholder="Mayor a 6 caracteres">
                 <br>
                 <button type="submit">Crear Cliente</button>
-
-              
-
             </form>
         </div>
-           
-        </div>
     </div>
+</div>
+@endsection
