@@ -22,3 +22,5 @@ Route::get('/Clientes/ClientesNaturales','ClienteNaturalController@index');
 Route::get('/Clientes/ClientesJuridicos','ClienteJuridicoController@index');
 
 Route::get('/Clientes/ClientesJuridicos/CrearClienteJuridico','ClienteJuridicoController@create');
+
+Route::get('/Productos','ProductoController')->name('productos');

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title','CandyUcab')</title>
+        <title>@yield('title') - Candy Ucab</title>
 
         <!-- Fonts -->
        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}">
