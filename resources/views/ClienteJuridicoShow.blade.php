@@ -7,7 +7,7 @@
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
-                <li class="nav-item">  <a class="nav-link" href="/"> <b>CandyUcab</b>      </a>     </li>
+                <li class="nav-item">  <a class="nav-link" href="{{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
                 <li class="nav-item">  <a class="nav-link" href="/Clientes/ClientesJuridicos"> Clientes Juridicos</a>     </li>
                 <li class="nav-item"> <a class="nav-link" href="/Clientes/ClientesJuridicos/CrearClienteJuridico">Nuevo Cliente</a></li>  
                 <li class="nav-item btn-nav-input" style="margin-left: 30%;">
@@ -18,9 +18,6 @@
                 </li>  
 
             </ul>
-       
-
-
     </div>
 
  

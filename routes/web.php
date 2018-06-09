@@ -23,4 +23,10 @@ Route::get('/Clientes/ClientesJuridicos','ClienteJuridicoController@index');
 
 Route::get('/Clientes/ClientesJuridicos/CrearClienteJuridico','ClienteJuridicoController@create');
 
-Route::get('/Productos','ProductoController')->name('productos');
+Route::get('/productos','ProductoController')->name('productos');
+
+Route::get('/productos/detalles/{codigo}','ProductoController@show')->where('codigo','[0-9]+')->name('productos.show');
+
+Route::get('/productos/nuevo', 'ProductoController@create')->name('productos.create');
+
+Route::post('/productos','ProductoController@store');
