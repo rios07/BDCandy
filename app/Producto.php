@@ -8,13 +8,15 @@ class Producto extends Model
 {
     protected $table = 'Producto';
 
-    protected $primary_key = 'pro_codigo';
+    protected $primaryKey = 'pro_codigo';
 
     public $incrementing = false;
+    
+    public $autoincrement = false;
 
     public $timestamps = false;
 
     protected $fillable = [
-        'pro_nombre', 'pro_descripcion', 'pro_sabor', 'pro_color', 'pro_relleno'
+        'pro_nombre', 'pro_descripcion', 'pro_sabor', 'pro_color', 'pro_relleno', 'pro_fabrica', 'pro_tipo_producto'
     ];
 }

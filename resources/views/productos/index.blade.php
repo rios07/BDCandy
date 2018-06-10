@@ -32,12 +32,12 @@
         <tr>
             <td scope="row">{{ $producto->pro_nombre }}</td>
             <td>
-                <form action="#" method="POST">
+                <form action="{{ route('productos.destroy', $producto) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
-                    <a href>Modificar</button>
-                    <button type="button" class="btn btn-outline-primary">Eliminar</button>
+                    <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
+                    <button type="submit" class="btn btn-outline-primary">Eliminar</button>
                 </form>
             </td>
         </tr>

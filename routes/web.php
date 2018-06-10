@@ -30,3 +30,9 @@ Route::get('/productos/detalles/{codigo}','ProductoController@show')->where('cod
 Route::get('/productos/nuevo', 'ProductoController@create')->name('productos.create');
 
 Route::post('/productos','ProductoController@store');
+
+Route::get('/productos/detalles/{codigo}/editar', 'ProductoController@edit')->name('productos.edit');
+
+Route::put('/productos/detalles/{producto}', 'ProductoController@update')->name('productos.update');
+
+Route::delete('/productos/detalles/{producto}', 'ProductoController@destroy')->name('productos.destroy');
