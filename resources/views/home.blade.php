@@ -1,8 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Inicio')
-@section('content')
 
-    <div class="jumbotron text-center">
+@section('content')
+<div class="jumbotron text-center">
         <h1 class="display-2"><b> CandyUcab  </b>  </h1>
       
         <nav>
@@ -15,8 +14,8 @@
                 <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
                 @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
+                    <li class="nav-item">><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
+                    <li class="nav-item">><a class="nav-link" href="{{ route('login') }}">{{ __('Acceder') }}</a></li>                    
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -25,7 +24,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Cerrar sesión') }}
+                                        {{ __('Desconectarse') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -37,17 +36,23 @@
             </ul>
         </nav>
     </div>  
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-    <div class="row">
-        @foreach ($mensajes as $mensaje)
-        <div class="col-6">
-            <img class="img-thumbnail" src="
-               {{ asset( $mensaje['imagen'] ) }}  ">
-            <p class="card-text"> <b>
-                {{ $mensaje['contenido'] }}
-                </b>
-            </p>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
         </div>
-        @endforeach
     </div>
+</div>
 @endsection

@@ -36,3 +36,7 @@ Route::get('/productos/detalles/{codigo}/editar', 'ProductoController@edit')->na
 Route::put('/productos/detalles/{producto}', 'ProductoController@update')->name('productos.update');
 
 Route::delete('/productos/detalles/{producto}', 'ProductoController@destroy')->name('productos.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

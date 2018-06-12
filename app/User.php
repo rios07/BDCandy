@@ -14,16 +14,26 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'Usuario';
+
+    protected $primaryKey = 'usu_codigo';
+
+    public $incrementing = false;
+    
+    public $autoincrement = false;
+
+    public $timestamps = false;
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'password', 'usu_nombre',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
+     /** The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password'
     ];
 }

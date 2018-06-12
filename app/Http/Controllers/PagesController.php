@@ -19,7 +19,6 @@ class PagesController extends Controller
     		],
 
     	];
-    	    	//dd($mensajes);
 
 	    return view('welcome',['mensajes' => $mensajes,
 	        ]);
