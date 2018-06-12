@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClienteJuridico extends Model
 {
     //
-
+	protected $table = 'ClienteJuridico';
     private $rif;
 	private $denominacionFiscal;
 	private $paginaWeb;
@@ -16,15 +16,17 @@ class ClienteJuridico extends Model
 	private $telefono;
 	private $correo;
 
-	public function __construct($rif, $denominacionFiscal, $paginaWeb,$capitalDisponible,$contacto,$correo,$telefono){
+    public $timestamps = false;
+
+	/*public function __construct($rif, $denominacionFiscal, $paginaWeb,$capitalDisponible,$correo){
 		$this->rif = $rif;
 		$this->denominacionFiscal = $denominacionFiscal;
 		$this->paginaWeb = $paginaWeb;
 		$this->capitalDisponible = $capitalDisponible;
-		$this->contacto = $contacto;
+		//$this->contacto = $contacto;
 		$this->correo = $correo;
-		$this->telefono=$telefono;
-	}
+		//$this->telefono=$telefono;
+	}*/
 
 	public function getRif(){
 		return $this->rif;
