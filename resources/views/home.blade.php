@@ -14,8 +14,8 @@
                 <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
                 @guest
-                    <li class="nav-item">><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
-                    <li class="nav-item">><a class="nav-link" href="{{ route('login') }}">{{ __('Acceder') }}</a></li>                    
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -24,7 +24,7 @@
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('Desconectarse') }}
+                                        {{ __('Cerrar sesión') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

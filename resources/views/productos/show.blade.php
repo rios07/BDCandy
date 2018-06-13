@@ -10,7 +10,7 @@
             <p>Color: {{$producto->pro_color}} </p>
             <p>Tipo de producto: {{$tipo_producto->tip_pro_nombre}}</p>
     	    <p>
-    	    	<a href="{{ route('productos') }}">Regresar al listado de usuarios</a>
+    	    	<a href="{{ route('productos') }}">Regresar al listado de productos</a>
     	    </p>
         </div>
     </div>

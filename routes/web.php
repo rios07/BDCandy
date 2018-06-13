@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 
 Route::get('/acerca','PagesController@about');
 
@@ -37,6 +37,18 @@ Route::put('/productos/detalles/{producto}', 'ProductoController@update')->name(
 
 Route::delete('/productos/detalles/{producto}', 'ProductoController@destroy')->name('productos.destroy');
 
-Auth::routes();
+Route::get('/tiendas','TiendaController')->name('tiendas');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tiendas/detalles/{codigo}','TiendaController@show')->where('codigo','[0-9]+')->name('tiendas.show');
+
+Route::get('/tiendas/nuevo', 'TiendaController@create')->name('tiendas.create');
+
+Route::post('/tiendas','TiendaController@store');
+
+Route::get('/tiendas/detalles/{codigo}/editar', 'TiendaController@edit')->name('tiendas.edit');
+
+Route::put('/tiendas/detalles/{tienda}', 'TiendaController@update')->name('tiendas.update');
+
+Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('tiendas.destroy');
+
+Auth::routes();

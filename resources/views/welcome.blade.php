@@ -9,7 +9,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href="/"> <b>CandyUcab</b>      </a>     </li>
                 <li class="nav-item">  <a class="nav-link" href="/Acerca de Nosotros"> <b>Acerca de Nosotros</b>      </a>     </li>
-                <li class="nav-item">  <a class="nav-link" href="/Tienda"><b>Tiendas</b></a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ route('tiendas')}}"><b>Tiendas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/Clientes') }} "><b>Clientes</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href=" {{ route('productos') }} "><b>Productos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
