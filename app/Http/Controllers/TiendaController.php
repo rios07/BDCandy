@@ -57,7 +57,7 @@ class TiendaController extends Controller
     public function edit($codigo){
         $tienda = Tienda::find($codigo);
        	$tipo_tiendas = array('Candy Shop','Mini Candy Shop');
-        $lugares = Lugar::orderBy('lug_nombre', 'asc')->get();
+        $lugares = Lugar::where('lug_tipo','Parroquia')->orderBy('lug_nombre','asc')->get();
         return view('tiendas.edit', compact('tienda','tipo_tiendas','lugares'));
     }
 

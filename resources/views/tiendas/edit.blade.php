@@ -22,7 +22,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="rif">Número de rif:</label>descripcion
+                    <label for="rif">Número de rif:</label>
                     <input type="text" class="form-control" name="tie_rif" id="rif" placeholder="Debe ser unico" value="{{ old('tie_rif',$tienda->tie_rif) }}">
                 </div>
 
@@ -60,10 +60,10 @@
                     @if ($lugares->isNotEmpty())
                         <select class="form-control" name="tie_lugar" id="lugar">
                             @foreach($lugares as $lugar)
-                            @if ($lugar->lug_codigo == $tienda->tie_lug)
+                            @if ($lugar->lug_codigo == $tienda->tie_lugar) 
                                 <option selected value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>
                             @else
-                                <option value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>
+                                <option value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>  
                             @endif
                             @endforeach
                         </select>
