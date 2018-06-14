@@ -8,7 +8,7 @@
         <nav>
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href="/"> <b>CandyUcab</b>      </a>     </li>
-                    <li class="nav-item">  <a class="nav-link" href="/Acerca de Nosotros"> <b>Acerca de Nosotros</b>      </a>     </li>
+                    <li class="nav-item">  <a class="nav-link" href="/about"> <b>Acerca de Nosotros</b>      </a>     </li>
                 <li class="nav-item">  <a class="nav-link" href="/Tienda"><b>Tiendas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href="/Clientes"><b>Clientes</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="/Productos"><b>Productos</b> </a></li>

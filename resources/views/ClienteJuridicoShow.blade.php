@@ -26,7 +26,7 @@
  
         <div class="row">
          
-            <table class="table">
+            <table class="table" name="ClienteJ" id="ClienteJ">
                 <thead class="thead-dark">
                         <tr>
                         <th scope="col">  rif  </th>
@@ -49,15 +49,21 @@
                            <td>{{ $cliente->correo }}</td>          
                            <td>{{ $cliente->paginaWeb}}</td> 
                            <td>{{ $cliente->capitalDisponible }}</td> 
-                           <td>
-                                <form action="{{ route('ClientesJuridicos.destroy', $cliente) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <a href=" {{ route('ClientesJuridicos.show', ['rif' => $cliente->rif]) }} " class="btn btn-outline-primary">Detalles</a>
-                                    <a href=" {{ route('ClientesJuridicos.edit', ['rif' => $cliente->rif]) }} " class="btn btn-outline-primary">Modificar</a>                   
-                                    <button type="submit" class="btn btn-outline-primary">Eliminar</button>
-                                </form>
+                           <td> 
+                          <!--      <a href=" " class="btn btn-outline-primary">Modificar</a> -->
+                                
+                           </td>
+                           <td> 
+                                <form action="{{ route('ClientesJuridicos.destroy', $cliente->id) }} " method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="btn btn-outline-primary" > Eliminar  </button>
+                                </form> 
                             </td>
+                           <td> 
+                            <button type="button" class="btn btn-outline-primary" >  Detalles </button>
+
+                           </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -65,3 +71,10 @@
         </div>
   
 @endsection 
+@section('scripts')
+   
+     
+
+      
+
+@endsection

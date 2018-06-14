@@ -42,4 +42,7 @@ class PagesController extends Controller
             ]);
 
     } 
+    Public function about(){
+        return view ('about');
+    }
 }

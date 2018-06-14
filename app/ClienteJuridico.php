@@ -18,15 +18,7 @@ class ClienteJuridico extends Model
 
     public $timestamps = false;
 
-	/*public function __construct($rif, $denominacionFiscal, $paginaWeb,$capitalDisponible,$correo){
-		$this->rif = $rif;
-		$this->denominacionFiscal = $denominacionFiscal;
-		$this->paginaWeb = $paginaWeb;
-		$this->capitalDisponible = $capitalDisponible;
-		//$this->contacto = $contacto;
-		$this->correo = $correo;
-		//$this->telefono=$telefono;
-	}*/
+
 
 	public function getRif(){
 		return $this->rif;

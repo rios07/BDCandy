@@ -57,7 +57,8 @@ class ClienteJuridicoController2 extends Controller
 
         $ClientesJuridico->save();
 
-       
+      return redirect()->action('ClienteJuridicoController2@index');
+    
     }
 
     /**
@@ -80,6 +81,9 @@ class ClienteJuridicoController2 extends Controller
     public function edit($id)
     {
         //
+        $ClientesJuridico=ClienteJuridico::findOrFail($id);
+
+      //  return view ($this->path.'.edit',compact('ClientesJuridico'));
     }
 
     /**
@@ -91,7 +95,16 @@ class ClienteJuridicoController2 extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    /*  
+        $ClientesJuridico->rif= $request->rif;
+        $ClientesJuridico->denominacionFiscal= $request->denominacionFiscal;
+        $ClientesJuridico->correo= $request->correo;
+        $ClientesJuridico->paginaWeb= $request->paginaWeb;
+        $ClientesJuridico->capitalDisponible= $request->capitalDisponible;
+               $ClientesJuridico->save();
+
+      return redirect()->action('ClienteJuridicoController2@index');
+*/
     }
 
     /**
@@ -103,7 +116,12 @@ class ClienteJuridicoController2 extends Controller
     public function destroy($id)
     {
         //
-         $cliente->delete();
-        return redirect()->route('Clientes/ClienteJ');
+        // $ClientesJuridicos=DB::table('ClienteJuridico')->where('id',$id)
+          //                                                ->get();
+      /* 
+        $ClientesJuridicos= ClienteJuridico::findOrFail($id);
+        $ClientesJuridicos->delete();
+        return redirect()->action('ClienteJuridicoController2@index');
+        */
     }
 }
