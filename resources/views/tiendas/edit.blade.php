@@ -60,7 +60,7 @@
                     @if ($lugares->isNotEmpty())
                         <select class="form-control" name="tie_lugar" id="lugar">
                             @foreach($lugares as $lugar)
-                            @if ($lugar->lug_codigo == $tienda->tie_lugar) 
+                            @if ($lugar->lug_codigo == $tienda->fk_lugar) 
                                 <option selected value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>
                             @else
                                 <option value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>  

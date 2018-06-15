@@ -19,7 +19,7 @@ class ProductoController extends Controller
     public function show($codigo)
     {
         $producto = Producto::find($codigo);
-        $tipo_producto = TipoProducto::find($producto->pro_tipo_producto);
+        $tipo_producto = TipoProducto::find($producto->fk_tipo_producto);
     	return view('productos.show', compact('producto','tipo_producto'));
     }
 
@@ -52,8 +52,8 @@ class ProductoController extends Controller
             $producto->pro_descripcion = $data['descripcion'];
             $producto->pro_sabor = $data['sabor'];
             $producto->pro_color = $data['color'];
-            $producto->pro_fabrica = 1;
-            $producto->pro_tipo_producto = $data['tipo'];
+            $producto->fk_fabrica = 1;
+            $producto->fk_tipo_producto = $data['tipo'];
             $producto->save();
         }
         else
@@ -64,8 +64,8 @@ class ProductoController extends Controller
             $producto->pro_sabor = $data['sabor'];
             $producto->pro_color = $data['color'];
             $producto->pro_relleno = $data['relleno'];
-            $producto->pro_fabrica = 1;
-            $producto->pro_tipo_producto = $data['tipo'];            
+            $producto->fk_fabrica = 1;
+            $producto->fk_tipo_producto = $data['tipo'];            
             $producto->save();
         }
        return redirect()->route('productos');
@@ -84,7 +84,7 @@ class ProductoController extends Controller
             'pro_sabor' => 'required',
             'pro_color' => 'required',
             'pro_relleno' => '',
-            'pro_tipo_producto' => 'integer'
+            'fk_tipo_producto' => 'integer'
         ],[
             'pro_nombre.required' => 'El campo nombre es obligatorio',
             'pro_descripcion.required' => 'El campo descripcion es obligatorio',

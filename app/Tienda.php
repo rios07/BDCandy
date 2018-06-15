@@ -17,6 +17,6 @@ class Tienda extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'tie_nombre', 'tie_descripcion', 'tie_rif', 'tie_descripcion', 'tie_tipo', 'tie_lugar'
+        'tie_nombre', 'tie_descripcion', 'tie_rif', 'tie_descripcion', 'tie_tipo', 'fk_lugar'
     ];
 }

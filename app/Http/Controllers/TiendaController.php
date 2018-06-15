@@ -18,7 +18,7 @@ class TiendaController extends Controller
     public function show($codigo)
     {
         $tienda = Tienda::find($codigo);
-        $lugar = Lugar::where('lug_codigo', $tienda->tie_lugar)->first();
+        $lugar = Lugar::where('lug_codigo', $tienda->fk_lugar)->first();
     	return view('tiendas.show', compact('tienda', 'lugar'));
     }
 
@@ -49,7 +49,7 @@ class TiendaController extends Controller
         $tienda->tie_nombre = $data['nombre'];
         $tienda->tie_descripcion = $data['descripcion'];
         $tienda->tie_tipo = $data['tipo'];
-        $tienda->tie_lugar = $data['lugar'];           
+        $tienda->fk_lugar = $data['lugar'];           
         $tienda->save();
        return redirect()->route('tiendas');
     }
@@ -67,13 +67,13 @@ class TiendaController extends Controller
             'tie_nombre' => 'required',
             'tie_descripcion' => 'required',
             'tie_tipo' => 'required',
-            'tie_lugar' => 'required',
+            'fk_lugar' => 'required',
         ],[
             'tie_rif.required' => 'El campo rif es obligatorio',
             'tie_nombre.required' => 'El campo nombre es obligatorio',
             'tie_descripcion.required' => 'El campo descripcion es obligatorio',
             'tie_tipo.required' => 'El campo tipo es obligatorio',
-            'tie_lugar.required' => 'El campo lugar es obligatorio'
+            'fk_lugar.required' => 'El campo lugar es obligatorio'
         ]);  
         $tienda->update($data);
         return redirect()->route('tiendas.show', ['codigo' => $tienda->tie_codigo]);

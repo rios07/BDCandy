@@ -52,7 +52,7 @@
                     @if ($tipo_productos->isNotEmpty())
                         <select class="form-control" name="pro_tipo_producto" id="tipo">
                             @foreach($tipo_productos as $tipo_producto)
-                            @if ($tipo_producto->tip_pro_codigo == $producto->pro_tipo_producto)
+                            @if ($tipo_producto->tip_pro_codigo == $producto->fk_tipo_producto)
                                 <option selected value="{{ $tipo_producto->tip_pro_codigo }}">{{ $tipo_producto->tip_pro_nombre }}</option>
                             @else
                                 <option value="{{ $tipo_producto->tip_pro_codigo }}">{{ $tipo_producto->tip_pro_nombre }}</option>
