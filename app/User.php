@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -27,7 +28,7 @@ class User extends Authenticatable
     public $timestamps = false;
 
     protected $fillable = [
-        'password', 'usu_nombre',
+        'password', 'usu_nombre', 'fk_rol'
     ];
 
      /** The attributes that should be hidden for arrays.
