@@ -58,7 +58,11 @@ return [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
+<<<<<<< HEAD
             'database' => env('DB_DATABASE', 'project1'),
+=======
+            'database' => env('DB_DATABASE', 'bdcandy'),
+>>>>>>> francisco
             'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', '12345'),
             'charset' => 'utf8',

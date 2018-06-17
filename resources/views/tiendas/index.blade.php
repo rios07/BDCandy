@@ -1,16 +1,5 @@
 @extends('layouts.app')
-<<<<<<< HEAD
-
-@section('title', 'Usuarios')
-
-@section('content')
-    <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">{{ $title }}</h1>
-        <p>
-            <a href="#" class="btn btn-primary">Nuevo Producto</a>
-        </p>
-=======
-@section('title', 'Productos')
+@section('title', 'Tiendas')
 @section('content')
 
     <div class="jumbotron text-center">
@@ -19,7 +8,7 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('productos.create') }}">Nuevo Producto</a></li>  
+                <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
                 <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
@@ -47,45 +36,29 @@
                     </li>
                 @endguest
             </ul>
->>>>>>> francisco
     </div>
 
-    @if ($productos->isNotEmpty())
+    @if ($tiendas->isNotEmpty())
     <table class="table">
         <thead class="thead-dark">
         <tr>
-<<<<<<< HEAD
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-=======
+            <th scope="col">Rif</th>
             <th scope="col">Nombre</th>
             <th scopre="col"></th>
->>>>>>> francisco
         </tr>
         </thead>
         <tbody>
-        @foreach($productos as $producto)
+        @foreach($tiendas as $tienda)
         <tr>
-<<<<<<< HEAD
-            <th scope="row">{{ $producto->pro_codigo }}</th>
-            <td>{{ $producto->pro_nombre }}</td>
+            <td scope="row">{{ $tienda->tie_rif }}</td>
+            <td scope="row">{{ $tienda->tie_nombre }}</td>
             <td>
-                <form action="#" method="POST">
+                <form action="{{ route('tiendas.destroy', $tienda) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href="#" class="btn btn-link"><span class="oi oi-eye"></span></a>
-                    <a href="#" class="btn btn-link"><span class="oi oi-pencil"></span></a>
-                    <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
-=======
-            <td scope="row">{{ $producto->pro_nombre }}</td>
-            <td>
-                <form action="{{ route('productos.destroy', $producto) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
-                    <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
+                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
+                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
                     <button type="submit" class="btn btn-outline-primary">Eliminar</button>
->>>>>>> francisco
                 </form>
             </td>
         </tr>
@@ -93,6 +66,6 @@
         </tbody>
     </table>
     @else
-        <p>No hay productos registrados.</p>
+        <p>No hay tiendas registrados.</p>
     @endif
 @endsection

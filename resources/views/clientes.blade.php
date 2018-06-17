@@ -18,3 +18,8 @@
             @endforeach
         </div>
     </div>
+<<<<<<< HEAD
+=======
+</div>
+@endsection
+>>>>>>> francisco

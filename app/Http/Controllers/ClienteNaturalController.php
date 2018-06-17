@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class ClienteNaturalController extends Controller
 {
+<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      *
@@ -81,4 +82,7 @@ class ClienteNaturalController extends Controller
     {
         //
     }
+=======
+    //
+>>>>>>> francisco
 }

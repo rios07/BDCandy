@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClienteNatural extends Model
 {
+<<<<<<< HEAD
     protected $table = 'ClienteNatural';
     private $rif;
     private $ci;
@@ -16,4 +17,7 @@ class ClienteNatural extends Model
 
     public $timestamps = false;
 
+=======
+    //
+>>>>>>> francisco
 }
