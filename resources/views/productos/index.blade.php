@@ -1,15 +1,4 @@
 @extends('layouts.app')
-<<<<<<< HEAD
-
-@section('title', 'Usuarios')
-
-@section('content')
-    <div class="d-flex justify-content-between align-items-end mb-3">
-        <h1 class="pb-1">{{ $title }}</h1>
-        <p>
-            <a href="#" class="btn btn-primary">Nuevo Producto</a>
-        </p>
-=======
 @section('title', 'Productos')
 @section('content')
 
@@ -26,9 +15,7 @@
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
                 </li> 
-                @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
+                @guest            
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -47,36 +34,19 @@
                     </li>
                 @endguest
             </ul>
->>>>>>> francisco
     </div>
 
     @if ($productos->isNotEmpty())
     <table class="table">
         <thead class="thead-dark">
         <tr>
-<<<<<<< HEAD
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-=======
             <th scope="col">Nombre</th>
             <th scopre="col"></th>
->>>>>>> francisco
         </tr>
         </thead>
         <tbody>
         @foreach($productos as $producto)
         <tr>
-<<<<<<< HEAD
-            <th scope="row">{{ $producto->pro_codigo }}</th>
-            <td>{{ $producto->pro_nombre }}</td>
-            <td>
-                <form action="#" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <a href="#" class="btn btn-link"><span class="oi oi-eye"></span></a>
-                    <a href="#" class="btn btn-link"><span class="oi oi-pencil"></span></a>
-                    <button type="submit" class="btn btn-link"><span class="oi oi-trash"></span></button>
-=======
             <td scope="row">{{ $producto->pro_nombre }}</td>
             <td>
                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">
@@ -85,7 +55,6 @@
                     <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
                     <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
                     <button type="submit" class="btn btn-outline-primary">Eliminar</button>
->>>>>>> francisco
                 </form>
             </td>
         </tr>

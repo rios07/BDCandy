@@ -19,11 +19,6 @@ class PagesController extends Controller
     		],
 
     	];
-<<<<<<< HEAD
-    	    	//dd($mensajes);
-=======
->>>>>>> francisco
-
 	    return view('welcome',['mensajes' => $mensajes,
 	        ]);
 	}
@@ -38,21 +33,14 @@ class PagesController extends Controller
             ['id'=>2,
              'contenido'=>'Clientes Juridicos',
              'imagen'=>'image\juridico.jpg',
-<<<<<<< HEAD
              'direccion'=>'/Clientes/ClienteJ'
-=======
-             'direccion'=>'/Clientes/ClientesJuridicos'
->>>>>>> francisco
             ],
         ];
         return view('clientes',['clientes' => $clientes,
             ]);
 
     } 
-<<<<<<< HEAD
     Public function about(){
         return view ('about');
     }
-=======
->>>>>>> francisco
 }

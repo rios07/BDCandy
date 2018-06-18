@@ -10,16 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
 Route::resource('Clientes/ClienteJ/','ClienteJuridicoController2');
-
-Route::get('/', 'PagesController@home');
-
-Route::get('/about','PagesController@about');
-
-Route::get('/Clientes/','PagesController@clientes');
-
-Route::get('/Productos','ProductoController');
 
 Route::post('ClienteJuridicoCreate', 
   ['as' => 'agregar', 'uses' => 'ClienteJuridicoController2@store']);
@@ -27,8 +18,8 @@ Route::post('ClienteJuridicoCreate',
 Route::delete('Clientes/ClienteJ/{ClientesJuridicos}', 'ClienteJuridicoController2@destroy')->name('ClientesJuridicos.destroy');
 
 Route::get('Clientes/ClienteJ/{codigo}/editar', 'ClienteJuridicoController2@edit')->name('ClientesJ.edit');
+
 Route::put('Clientes/ClienteJ/{producto}', 'ClienteJuridicoController2@update')->name('ClientesJ.update');
-=======
 
 Route::get('/', 'PagesController@home')->name('home');
 
@@ -37,10 +28,6 @@ Route::get('/acerca','PagesController@about');
 Route::get('/Clientes/','PagesController@clientes');
 
 Route::get('/Clientes/ClientesNaturales','ClienteNaturalController@index');
-
-Route::get('/Clientes/ClientesJuridicos','ClienteJuridicoController@index');
-
-Route::get('/Clientes/ClientesJuridicos/CrearClienteJuridico','ClienteJuridicoController@create');
 
 Route::get('/productos','ProductoController')->name('productos');
 
@@ -71,4 +58,3 @@ Route::put('/tiendas/detalles/{tienda}', 'TiendaController@update')->name('tiend
 Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('tiendas.destroy');
 
 Auth::routes();
->>>>>>> francisco

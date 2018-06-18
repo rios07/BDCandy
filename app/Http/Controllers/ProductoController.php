@@ -3,24 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use App\Producto;
-=======
 use Illuminate\Validation\Rule;
 use App\Producto;
 use App\TipoProducto;
->>>>>>> francisco
 
 class ProductoController extends Controller
 {
     public function __invoke()
     {
-<<<<<<< HEAD
-    	$productos = Producto::all();
-    	$title = "Lista de productos";
-    	return view('productos.index', compact('productos', 'title'));
-    }
-=======
     	$productos = Producto::orderBy('pro_codigo', 'asc')->get();
     	$title = "Lista de productos";
     	return view('productos.index', compact('productos', 'title'));
@@ -110,5 +100,4 @@ class ProductoController extends Controller
         $producto->delete();
         return redirect()->route('productos');
     }
->>>>>>> francisco
 }

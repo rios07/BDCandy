@@ -36,10 +36,10 @@
                     <input type="text" class="form-control" name="descripcion" id="descripcion" placeholder="Descripcion" value="{{ old('descripcion') }}">
                 </div>
 
-                <div class="form-group">
+                <div id="tipo" class="form-group">
                     <label for="tipo">Tipo de tienda</label>
                     @if (!empty($tipo_tiendas))
-                        <select class="form-control" name="tipo" id="tipo">
+                        <select class="form-control" name="tipo" id="tipo2">
                                 <option value="" selected disabled hidden>Elige el tipo de tienda</option>
                             @foreach($tipo_tiendas as $key => $value)
                                 <option value="{{$value}}">{{$value}}</option>
@@ -73,4 +73,6 @@
             <a href="{{ route('tiendas') }}" class="btn btn-link">Regresar al listado de tiendas</a>
         </div>
     </div>
+@endsection
+@section('scripts')
 @endsection

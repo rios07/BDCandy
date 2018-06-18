@@ -7,32 +7,16 @@
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
-<<<<<<< HEAD
-                <li class="nav-item">  <a class="nav-link" href="/"> <b>CandyUcab</b>      </a>     </li>
-                <li class="nav-item">  <a class="nav-link" href="/Clientes/ClienteJ"> Clientes Juridico</a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="/Clientes/ClienteJ/create">Nuevo Cliente</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 30%;">
-=======
-                <li class="nav-item">  <a class="nav-link" href="{{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item">  <a class="nav-link" href="/Clientes/ClientesJuridicos"> Clientes Juridicos</a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="/Clientes/ClientesJuridicos/CrearClienteJuridico">Nuevo Cliente</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 5%; margin-right: 2%;">
->>>>>>> francisco
+                <li class="nav-item">  <a class="nav-link" href="{{ url('/') }}"> <b>CandyUcab</b>      </a>     </li>
+                <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes/ClienteJ') }}"> Clientes Juridico</a>     </li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('/Clientes/ClienteJ/create') }}">Nuevo Cliente</a></li>  
+                <li class="nav-item btn-nav-input" style="margin-left: 10%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
                         <button class="btn btn-outline-primary" type="submit">Buscar</button>
                     </form>
                 </li>  
-<<<<<<< HEAD
-
-            </ul>
-       
-
-
-=======
-                @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
+                @guest                    
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -52,17 +36,12 @@
                 @endguest
 
             </ul>
->>>>>>> francisco
     </div>
 
  
         <div class="row">
          
-<<<<<<< HEAD
             <table class="table" name="ClienteJ" id="ClienteJ">
-=======
-            <table class="table">
->>>>>>> francisco
                 <thead class="thead-dark">
                         <tr>
                         <th scope="col">  rif  </th>
@@ -85,13 +64,12 @@
                            <td>{{ $cliente->correo }}</td>          
                            <td>{{ $cliente->paginaWeb}}</td> 
                            <td>{{ $cliente->capitalDisponible }}</td> 
-<<<<<<< HEAD
                            <td> 
                           <!--      <a href=" " class="btn btn-outline-primary">Modificar</a> -->
                                 
                            </td>
                            <td> 
-                                <form action="{{ route('ClientesJuridicos.destroy', $cliente->id) }} " method="post">
+                                <form action="{{ route('ClientesJuridicos.destroy', ['ClientesJuridicos' => $cliente->rif]) }} " method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="btn btn-outline-primary" > Eliminar  </button>
@@ -101,26 +79,11 @@
                             <button type="button" class="btn btn-outline-primary" >  Detalles </button>
 
                            </td>
-=======
-                           <td> <button type="button" class="btn btn-outline-primary" >Modificar</button></td>
-                           <td> <button type="button" class="btn btn-outline-primary">Eliminar </button></td>
-                           <td> <button type="button" class="btn btn-outline-primary">Detalles </button></td>
->>>>>>> francisco
                         </tr>
                     @endforeach
                 </tbody>
             </table>
-        </div>
-  
-<<<<<<< HEAD
-@endsection 
-@section('scripts')
-   
-     
-
-      
-
+        </div> 
 @endsection
-=======
-@endsection 
->>>>>>> francisco
+@section('scripts')
+@endsection

@@ -47,14 +47,12 @@ class ClienteJuridicoController2 extends Controller
     public function store(Request $request)
     {
         //
-       $ClientesJuridico=new ClienteJuridico();
-
+        $ClientesJuridico=new ClienteJuridico();
         $ClientesJuridico->rif= $request->rif;
         $ClientesJuridico->denominacionFiscal= $request->denominacionFiscal;
         $ClientesJuridico->correo= $request->correo;
         $ClientesJuridico->paginaWeb= $request->paginaWeb;
         $ClientesJuridico->capitalDisponible= $request->capitalDisponible;
-
         $ClientesJuridico->save();
 
       return redirect()->action('ClienteJuridicoController2@index');
