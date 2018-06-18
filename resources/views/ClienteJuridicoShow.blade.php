@@ -22,12 +22,10 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->usu_nombre }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -36,6 +34,7 @@
                 @endguest
 
             </ul>
+          </nav>
     </div>
 
  
@@ -44,9 +43,10 @@
             <table class="table" name="ClienteJ" id="ClienteJ">
                 <thead class="thead-dark">
                         <tr>
-                        <th scope="col">  rif  </th>
-                        <th scope="col">Denominacion Fiscal</th>
-                        <th scope="col">Correo</th>
+                        <th scope="col"> Rif  </th>
+                        <th scope="col">Denominacion Comercial</th>
+                        <th scope="col">Razon Social</th>
+                        <th scope="col">Correo Electronico</th>
                         <th scope="col">Pagina Web</th>
                         <th scope="col">Capital Disponible</th>
                         <th scope="col">Modificar</th>
@@ -59,24 +59,26 @@
                 <tbody>
                     @foreach($ClientesJuridicos as $cliente)
                         <tr>
-                           <td>{{ $cliente->rif  }}</td> 
-                           <td>{{ $cliente->denominacionFiscal}}</td> 
-                           <td>{{ $cliente->correo }}</td>          
-                           <td>{{ $cliente->paginaWeb}}</td> 
-                           <td>{{ $cliente->capitalDisponible }}</td> 
+                           <td>{{ $cliente->cli_jur_rif  }}</td> 
+                           <td>{{ $cliente->cli_jur_denominacionComercial }}</td> 
+                           <td>{{ $cliente->cli_jur_razon_social }}</td>
+                           <td>{{ $cliente->cli_jur_correoElectronico }}</td>          
+                           <td>{{ $cliente->cli_jur_paginaWeb}}</td> 
+                           <td>{{ $cliente->cli_jur_capitalDisponible }}</td> 
                            <td> 
-                          <!--      <a href=" " class="btn btn-outline-primary">Modificar</a> -->
+                                <a href="{{ route('ClientesJ.edit', $cliente->cli_jur_rif) }} " class="btn btn-outline-primary">Modificar</a> 
                                 
                            </td>
                            <td> 
-                                <form action="{{ route('ClientesJuridicos.destroy', ['ClientesJuridicos' => $cliente->rif]) }} " method="post">
+
+                                <form action="{{ route('ClientesJuridicos.destroy', $cliente->cli_jur_rif) }} " method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="btn btn-outline-primary" > Eliminar  </button>
                                 </form> 
                             </td>
                            <td> 
-                            <button type="button" class="btn btn-outline-primary" >  Detalles </button>
+                            <a href=" {{ route('ClienteJ.show',  $cliente->cli_jur_rif) }}" class="btn btn-outline-primary" >  Detalles </a>
 
                            </td>
                         </tr>
