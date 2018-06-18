@@ -30,7 +30,7 @@ class PagesController extends Controller
             ['id'=>1,
              'contenido'=>'Clientes Naturales',
              'imagen'=>'image\natural.jpg',
-             'direccion'=>'/Clientes/ClientesNaturales'
+             'direccion'=>'/Clientes/ClienteN'
             ],
             ['id'=>2,
              'contenido'=>'Clientes Juridicos',
