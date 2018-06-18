@@ -16,6 +16,7 @@
                 <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
                 @guest
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
                 @else
                     <li class="nav-item dropdown">

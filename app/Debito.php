@@ -10,9 +10,9 @@ class Debito extends Model
      public $autoincrement = false;
     public $timestamps = false;
 
-    protected $table='medio_pago_tarjeta_debito'
+    protected $table='medio_pago_debito'
   
-    private $primaryKey = 'med_pag_tar_deb_codigo';
+    private $primaryKey = 'med_ped_deb_codigo';
     private $med_ped_deb_numero;
    
     private $med_ped_deb_banco;

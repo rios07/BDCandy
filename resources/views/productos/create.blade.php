@@ -56,7 +56,7 @@
                             @endforeach
                         </select>
                     @else
-                        <select class="form-control">
+                        <select>
                             <option>No hay tipos de productos.</option>
                         </select>
                     @endif
