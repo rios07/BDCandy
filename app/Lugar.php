@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lugar extends Model
 {
-  	protected $table = 'Lugar';
+  	protected $table = 'lugar';
     protected $primaryKey = 'lug_codigo';
     public $incrementing = false;
     public $autoincrement = false;
