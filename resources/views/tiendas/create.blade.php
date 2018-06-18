@@ -62,8 +62,8 @@
                             @endforeach
                         </select>
                     @else
-                        <select>
-                            <option>No hay tipos de tiendas.</option>
+                        <select class="form-control">
+                            <option>No hay lugares.</option>
                         </select>
                     @endif
                 </div>

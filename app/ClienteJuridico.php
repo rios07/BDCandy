@@ -11,15 +11,14 @@ class ClienteJuridico extends Model
      public $autoincrement = false;
     public $timestamps = false;
 
-	protected $table = 'ClienteJuridico';
+	protected $table = 'cliente_juridico';
 	protected $primaryKey = 'cli_jur_rif';
-	private $cli_jur_denominacionComercial;
-	private $cli_jur_paginaWeb;
-	private $cli_jur_capitalDisponible;
-	private $cli_jur_correoElectronico;
+	private $cli_jur_denominacion_fiscal;
+	private $cli_jur_pagina_web;
+	private $cli_jur_capital_disponible;
+	private $cli_jur_correo_electronico;
 	private $cli_jur_razon_social;
-	private $fk_lugarFiscal;
-	private $fk_lugarPrincipal;
+	private $fk_lugar;
 
 	public function Debito(){
 		return $this->hasMany('App\Debito','fk_cliente_juridico');//local key rif en esta id
