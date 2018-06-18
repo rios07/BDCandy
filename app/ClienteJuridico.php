@@ -21,10 +21,6 @@ class ClienteJuridico extends Model
 	private $fk_lugarFiscal;
 	private $fk_lugarPrincipal;
 
-   
-
-
-
 	public function Debito(){
 		return $this->hasMany('App\Debito','fk_cliente_juridico');//local key rif en esta id
 	}

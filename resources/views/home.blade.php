@@ -1,18 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Inicio')
-
 @section('content')
-
-    <div class="jumbotron text-center">
+<div class="jumbotron text-center">
         <h1 class="display-2"><b> CandyUcab  </b>  </h1>
       
         <nav>
             <ul class="nav nav-pills">
+                <li class="nav-item">  <a class="nav-link" href="/"> <b>CandyUcab</b>      </a>     </li>
                 <li class="nav-item">  <a class="nav-link" href="/Acerca de Nosotros"> <b>Acerca de Nosotros</b>      </a>     </li>
-                <li class="nav-item">  <a class="nav-link" href="{{ route('tiendas') }}"><b>Tiendas</b></a></li>
-                <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes') }}"><b>Clientes</b> </a></li>
-                <li class="nav-item">  <a class="nav-link" href="{{ route('productos') }}"><b>Productos</b> </a></li>
+                <li class="nav-item">  <a class="nav-link" href="/Tienda"><b>Tiendas</b></a></li>
+                <li class="nav-item">  <a class="nav-link" href=" {{ url('/Clientes') }} "><b>Clientes</b> </a></li>
+                <li class="nav-item">  <a class="nav-link" href=" {{ route('productos') }} "><b>Productos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
                 @guest
@@ -34,21 +32,27 @@
                             </form>
                         </div>
                     </li>
-                @endguest                
+                @endguest
             </ul>
         </nav>
     </div>  
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-    <div class="row">
-        @foreach ($mensajes as $mensaje)
-        <div class="col-6">
-            <img class="img-thumbnail" src="
-               {{ asset( $mensaje['imagen'] ) }}  ">
-            <p class="card-text"> <b>
-                {{ $mensaje['contenido'] }}
-                </b>
-            </p>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
         </div>
-        @endforeach
     </div>
+</div>
 @endsection

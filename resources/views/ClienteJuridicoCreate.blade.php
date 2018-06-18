@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('content')
-
     <div class="jumbotron text-center">
         <h1 > Registro de Clientes</h1>
  
@@ -84,9 +82,6 @@
                
                 <div class="form-inline my-auto my-lg-auto" style="margin-left: 45%">
                      <button type="submit" class="btn btn-outline-primary"> Registrar</button>
-                </div>
-               
+                </div>               
             {{form::close()}}
-           
-   
 @endsection
