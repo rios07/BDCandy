@@ -12,7 +12,7 @@
                 <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                        <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
                 </li> 
                 @guest            
@@ -37,7 +37,7 @@
     </div>
 
     @if ($productos->isNotEmpty())
-    <table class="table">
+    <table class="table table-striped" name="producto" id="producto">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Nombre</th>
@@ -52,9 +52,9 @@
                 <form action="{{ route('productos.destroy', $producto) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
-                    <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
-                    <button type="submit" class="btn btn-outline-primary">Eliminar</button>
+                    <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-info">Detalles</a>
+                    <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-primary">Modificar</a>                   
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </td>
         </tr>
@@ -64,4 +64,6 @@
     @else
         <p>No hay productos registrados.</p>
     @endif
+@endsection
+@section ('bottom')
 @endsection

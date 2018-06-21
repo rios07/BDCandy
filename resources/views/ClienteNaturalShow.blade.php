@@ -25,7 +25,7 @@
 
  
         <div class="row">
-            <table class="table" name="ClienteJ" id="ClienteJ">
+            <table class="table table-striped" name="ClienteJ" id="ClienteJ">
 
                 <thead class="thead-dark">
                         <tr>
@@ -49,11 +49,10 @@
                         <tr>
                            <td>{{ $cliente->cli_nat_rif  }}</td> 
                            <td>{{ $cliente->cli_nat_ci }}</td>
-                           <td>{{ $cliente->cli_nat_primer_nombre }}</td> 
-                           <td>{{ $cliente->cli_nat_segundo_nombre}}</td> 
-
+                           <td>{{ $cliente->clie_nat_primer_nombre}}</td> 
+                           <td>{{ $cliente->cli_nat_segund_nombre}}</td> 
                            <td>{{ $cliente->cli_nat_primer_apellido }}</td>
-                           <td>{{ $cliente->cli_nat_segundo_apellido }}</td>          
+                           <td>{{ $cliente->cli_nat_segund_apellido }}</td>          
                            <td>{{ $cliente->cli_nat_correo_electronico}}</td> 
                            <td> 
                                 <a href="{{ route('ClientesN.edit', $cliente->cli_nat_rif) }} " class="btn btn-outline-primary">Modificar</a> 

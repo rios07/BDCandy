@@ -23,7 +23,7 @@ class ClienteJuridicoController2 extends Controller
     public function index()
     {
         //
-        $ClientesJuridicos=DB::table('ClienteJuridico')->get();
+        $ClientesJuridicos=DB::table('cliente_juridico')->get();
        
 
       
@@ -59,16 +59,16 @@ class ClienteJuridicoController2 extends Controller
        
         $ClientesJuridico->cli_jur_rif= $request->cli_jur_rif;
        
-        $ClientesJuridico->cli_jur_denominacionComercial= $request->cli_jur_denominacionComercial;
+        $ClientesJuridico->cli_jur_denominacion_fiscal= $request->cli_jur_denominacion_fiscal;
         $ClientesJuridico->cli_jur_razon_social= $request->cli_jur_razon_social;
        
-        $ClientesJuridico->cli_jur_correoElectronico= $request->cli_jur_correoElectronico;
+        $ClientesJuridico->cli_jur_correo_electronico= $request->cli_jur_correo_electronico;
        
-        $ClientesJuridico->cli_jur_paginaWeb= $request->cli_jur_paginaWeb;
-        $ClientesJuridico->cli_jur_capitalDisponible= $request->cli_jur_capitalDisponible;
+        $ClientesJuridico->cli_jur_pagina_web= $request->cli_jur_pagina_web;
+        $ClientesJuridico->cli_jur_capital_disponible= $request->cli_jur_capital_disponible;
        
-        $ClientesJuridico->fk_lugarFiscal=$request->fk_lugarFiscal;
-        $ClientesJuridico->fk_lugarPrincipal=$request->fk_lugarPrincipal;
+        $ClientesJuridico->fk_lugar=$request->fk_lugar;
+       
         $ClientesJuridico->save();
 
       return redirect()->action('ClienteJuridicoController2@index');
@@ -85,9 +85,9 @@ class ClienteJuridicoController2 extends Controller
     {
         //
         $ClienteJuridico = ClienteJuridico::find($cli_jur_rif);
-        $lugar = Lugar::where('lug_codigo', $ClienteJuridico->fk_lugarFiscal)->first();
-        $lugarb = Lugar::where('lug_codigo', $ClienteJuridico->fk_lugarPrincipal)->first();
-        return view('ClienteJuridicoD', compact('ClienteJuridico', 'lugar','lugarb'));
+        $lugar = Lugar::where('lug_codigo', $ClienteJuridico->fk_lugar)->first();
+       
+        return view('ClienteJuridicoD', compact('ClienteJuridico', 'lugar'));
     }
 
     /**
@@ -119,13 +119,12 @@ class ClienteJuridicoController2 extends Controller
        
         $ClientesJuridico= ClienteJuridico::findOrFail($cli_jur_rif);
         $ClientesJuridico->cli_jur_rif= $request->input('cli_jur_rif');
-        $ClientesJuridico->cli_jur_denominacionComercial= $request->input('cli_jur_denominacionComercial');
+        $ClientesJuridico->cli_jur_denominacion_fiscal= $request->input('cli_jur_denominacion_fiscal');
         $ClientesJuridico->cli_jur_razon_social= $request->input('cli_jur_razon_social');
-        $ClientesJuridico->cli_jur_correoElectronico= $request->input('cli_jur_correoElectronico');
-        $ClientesJuridico->cli_jur_paginaWeb= $request->input('cli_jur_paginaWeb');
-        $ClientesJuridico->cli_jur_capitalDisponible= $request->input('cli_jur_capitalDisponible');
-        $ClientesJuridico->fk_lugarFiscal=$request->input('fk_lugarFiscal');
-        $ClientesJuridico->fk_lugarPrincipal=$request->input('fk_lugarPrincipal');
+        $ClientesJuridico->cli_jur_correo_electronico= $request->input('cli_jur_correo_electronico');
+        $ClientesJuridico->cli_jur_pagina_web= $request->input('cli_jur_pagina_web');
+        $ClientesJuridico->cli_jur_capital_disponible= $request->input('cli_jur_capital_disponible');
+        $ClientesJuridico->fk_lugar=$request->input('fk_lugar');
         $ClientesJuridico->save();
         
 
@@ -142,7 +141,7 @@ class ClienteJuridicoController2 extends Controller
     public function destroy($cli_jur_rif)
     {
         //ClientesJuridico->cli_jur_rif
-        $ClientesJuridicos=DB::table('ClienteJuridico')->where('cli_jur_rif',$cli_jur_rif)
+        $ClientesJuridicos=DB::table('cliente_juridico')->where('cli_jur_rif',$cli_jur_rif)
                                                        ->get();
      
         $ClientesJuridicos= ClienteJuridico::findOrFail($cli_jur_rif);

@@ -15,13 +15,13 @@
                         </div>
                        
                         <div class="col-md-4">
-                            <label for="denominacionFiscal">Denominación comercial</label>
-                            <input type="text" class="form-control" id="cli_jur_denominacionComercial" name="cli_jur_denominacionComercial" placeholder="Denominacion Comercial">
+                            <label for="cli_jur_denominacion_fiscal">Denominación comercial</label>
+                            <input type="text" class="form-control" id="cli_jur_denominacion_fiscal" name="cli_jur_denominacion_fiscal" placeholder="Denominacion Fiscal">
                         </div>
 
                          <div class="col-md-4">
                             <label for="razonSocial">Razon Social</label>
-                            <select type="text" class="form-control" id="cli_jur_razon_social" name="cli_jur_razon_social" placeholder="razon Social">    
+                            <select type="text" class="form-control-lg" id="cli_jur_razon_social" name="cli_jur_razon_social" placeholder="razon Social">    
                                 <option>c.a</option>
                                 <option>s.a</option>
                             </select>
@@ -33,15 +33,15 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="correo"> Correo </label>
-                            <input type="text" class="form-control" id="cli_jur_correoElectronico" name="cli_jur_correoElectronico" placeholder="correo ">
+                            <input type="text" class="form-control" id="cli_jur_correo_electronico" name="cli_jur_correo_electronico" placeholder="correo ">
                         </div>
                         <div class="col-md-4">
                             <label for="paginaWeb">Pagina Web</label>
-                            <input type="text" class="form-control" id="cli_jur_paginaWeb" name="cli_jur_paginaWeb" placeholder="Pagina Web">
+                            <input type="text" class="form-control" id="cli_jur_pagina_web" name="cli_jur_pagina_web" placeholder="Pagina Web">
                         </div>   
                         <div class="col-md-4">
                             <label for="capitalDisponible">Capital Disponible</label>
-                            <input type="text" class="form-control" id="cli_jur_capitalDisponible" name="cli_jur_capitalDisponible" placeholder="Capital Disponible">
+                            <input type="text" class="form-control" id="cli_jur_capital_disponible" name="cli_jur_capital_disponible" placeholder="Capital Disponible">
                         </div>
 
                     </div>             
@@ -49,22 +49,14 @@
                     <div class="form-group row">
                         <div class="col-md-6">
                             <label for="lugar">direccion Fiscal</label>
-                            <select class="form-control" name="fk_lugarPrincipal" id="fk_lugarPrincipal">
+                            <select class="form-control-lg" name="fk_lugar" id="fk_lugar">
                                 <option value="" selected disabled hidden>Seleccione</option>
                                 @foreach($lugares as $lugarA)
                                     <option value="{{$lugarA->lug_codigo}}">{{$lugarA->lug_nombre}}</option>
                                 @endforeach
                             </select>
                         </div>  
-                        <div class="col-md-6">
-                            <label for="lugar">direccion Principal</label>
-                            <select class="form-control" name="fk_lugarFiscal" id="fk_lugarFiscal">
-                                <option value="" selected disabled hidden>Seleccione</option>
-                                @foreach($lugares as $lugarB)
-                                    <option value="{{$lugarB->lug_codigo}}">{{$lugarB->lug_nombre}}</option>
-                                @endforeach
-                            </select>
-                        </div>   
+                        
 
                     </div>
 

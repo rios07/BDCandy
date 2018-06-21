@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="tipo">Tipo de producto:</label>
                     @if ($tipo_productos->isNotEmpty())
-                        <select class="form-control" name="pro_tipo_producto" id="tipo">
+                        <select class="form-control form-control-lg" name="pro_tipo_producto" id="tipo">
                             @foreach($tipo_productos as $tipo_producto)
                             @if ($tipo_producto->tip_pro_codigo == $producto->fk_tipo_producto)
                                 <option selected value="{{ $tipo_producto->tip_pro_codigo }}">{{ $tipo_producto->tip_pro_nombre }}</option>

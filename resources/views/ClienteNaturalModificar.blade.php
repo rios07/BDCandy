@@ -26,11 +26,11 @@
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="cli_nat_primer_nombre"> Nombre </label>
-                            <input type="text" class="form-control" id="cli_nat_primer_nombre" name="cli_nat_primer_nombre" placeholder="Nombre" value="{{ old('cli_nat_primer_nombre',$ClienteNatural->cli_nat_primer_nombre) }}">
+                            <input type="text" class="form-control" id="clie_nat_primer_nombre" name="clie_nat_primer_nombre" placeholder="Nombre" value="{{ old('clie_nat_primer_nombre',$ClienteNatural->clie_nat_primer_nombre) }}">
                         </div>
                         <div class="col-md-4">
-                            <label for="cli_nat_segundo_nombre">Segundo Nombre</label>
-                            <input type="text" class="form-control" id="cli_nat_segundo_nombre" name="cli_nat_segundo_nombre" placeholder="segundo nombre" value="{{ old('cli_nat_segundo_nombre',$ClienteNatural->cli_nat_segundo_nombre) }}">
+                            <label for="cli_nat_segund_nombre">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="cli_nat_segund_nombre" name="cli_nat_segund_nombre" placeholder="segund nombre" value="{{ old('cli_nat_segund_nombre',$ClienteNatural->cli_nat_segund_nombre) }}">
                         </div>   
                         
 
@@ -45,7 +45,7 @@
 
                          <div class="col-md-4">
                             <label for="cli_nat_primer_nombre"> Segundo Apellido</label>
-                            <input type="text" class="form-control" id="cli_nat_segundo_apellido" name="cli_nat_segundo_apellido" placeholder=" Segundo Apellido" value="{{ old('cli_nat_segundo_apellido',$ClienteNatural->cli_nat_segundo_apellido) }}">
+                            <input type="text" class="form-control" id="cli_nat_segund_apellido" name="cli_nat_segund_apellido" placeholder=" Segund Apellido" value="{{ old('cli_nat_segund_apellido',$ClienteNatural->cli_nat_segund_apellido) }}">
                         </div>
                     </div>
                     <div class="form-group row">       
@@ -58,7 +58,7 @@
                                             
                         <div class="col-md-6">
                             <label for="lugar">direccion</label>
-                            <select class="form-control" name="fk_lugar" id="fk_lugar">
+                            <select class="form-control-lg" name="fk_lugar" id="fk_lugar">
                                 <option value="" selected disabled hidden>Seleccione</option>
                                 @foreach($lugares as $lugarA)
                                     <option value="{{$lugarA->lug_codigo}}">{{$lugarA->lug_nombre}}</option>

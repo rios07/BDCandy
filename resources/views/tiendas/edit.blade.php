@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card">
-        <h4 class="card-header">Modificar producto</h4>
+        <h4 class="card-header">Modificar tienda</h4>
         <div class="card-body">
 
             @if ($errors->any())
@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label for="tipo">Tipo de tienda:</label>
                     @if (!empty($tipo_tiendas))
-                        <select class="form-control" name="tie_tipo" id="tipo">
+                        <select class="form-control form-control-lg" name="tie_tipo" id="tipo">
                             @foreach($tipo_tiendas as $key => $value)
                             @if (($tienda->tie_tipo) == $value)
                                 <option selected value="{{ $value }}">{{ $value }}</option>
@@ -58,7 +58,7 @@
                 <div class="form-group">
                     <label for="lugar">Lugar:</label>
                     @if ($lugares->isNotEmpty())
-                        <select class="form-control" name="tie_lugar" id="lugar">
+                        <select class="form-control form-control-lg" name="tie_lugar" id="lugar">
                             @foreach($lugares as $lugar)
                             @if ($lugar->lug_codigo == $tienda->fk_lugar) 
                                 <option selected value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>
@@ -74,7 +74,7 @@
                     @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary">Crear tienda</button>                
+                <button type="submit" class="btn btn-primary">Modificar tienda</button>                
             </form>
             <a href="{{ route('tiendas') }}" class="btn btn-link">Regresar al listado de tiendas</a>
         </div>

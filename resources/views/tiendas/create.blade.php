@@ -39,7 +39,7 @@
                 <div id="tipo" class="form-group">
                     <label for="tipo">Tipo de tienda</label>
                     @if (!empty($tipo_tiendas))
-                        <select class="form-control" name="tipo" id="tipo2">
+                        <select class="form-control form-control-lg" name="tipo" id="tipo2">
                                 <option value="" selected disabled hidden>Elige el tipo de tienda</option>
                             @foreach($tipo_tiendas as $key => $value)
                                 <option value="{{$value}}">{{$value}}</option>
@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label for="lugar">Lugar</label>
                     @if ($lugares->isNotEmpty())
-                        <select class="form-control" name="lugar" id="lugar">
+                        <select class="form-control form-control-lg" name="lugar" id="lugar">
                                 <option value="" selected disabled hidden>Parroquias</option>
                             @foreach($lugares as $lugar)
                                 <option value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>

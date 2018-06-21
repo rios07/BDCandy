@@ -12,7 +12,7 @@
                 <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                        <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
                 </li> 
                 @guest           
@@ -37,7 +37,7 @@
     </div>
 
     @if ($tiendas->isNotEmpty())
-    <table class="table">
+    <table class="table table-striped" name="producto" id="tienda">
         <thead class="thead-dark">
         <tr>
             <th scope="col">Rif</th>
@@ -50,13 +50,13 @@
         <tr>
             <td scope="row">{{ $tienda->tie_rif }}</td>
             <td scope="row">{{ $tienda->tie_nombre }}</td>
-            <td>
+            <td scope="row">
                 <form action="{{ route('tiendas.destroy', $tienda) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-outline-primary">Detalles</a>
-                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-outline-primary">Modificar</a>                   
-                    <button type="submit" class="btn btn-outline-primary">Eliminar</button>
+                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
+                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-primary">Modificar</a>                   
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </td>
         </tr>
@@ -66,4 +66,6 @@
     @else
         <p>No hay tiendas registrados.</p>
     @endif
+@endsection
+@section ('bottom')
 @endsection

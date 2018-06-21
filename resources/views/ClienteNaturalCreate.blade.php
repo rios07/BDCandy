@@ -25,12 +25,12 @@
                                
                     <div class="form-group row">
                         <div class="col-md-4">
-                            <label for="cli_nat_primer_nombre"> Nombre </label>
-                            <input type="text" class="form-control" id="cli_nat_primer_nombre" name="cli_nat_primer_nombre" placeholder="Nombre ">
+                            <label for="clie_nat_primer_nombre"> Nombre </label>
+                            <input type="text" class="form-control" id="clie_nat_primer_nombre" name="clie_nat_primer_nombre" placeholder="Nombre ">
                         </div>
                         <div class="col-md-4">
-                            <label for="cli_nat_segundo_nombre">Segundo Nombre</label>
-                            <input type="text" class="form-control" id="cli_nat_segundo_nombre" name="cli_nat_segundo_nombre" placeholder="segundo nombre">
+                            <label for="cli_nat_segund_nombre">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="cli_nat_segund_nombre" name="cli_nat_segund_nombre" placeholder="segund nombre">
                         </div>   
                         
 
@@ -45,7 +45,7 @@
 
                          <div class="col-md-4">
                             <label for="cli_nat_primer_nombre"> Segundo Apellido</label>
-                            <input type="text" class="form-control" id="cli_nat_segundo_apellido" name="cli_nat_segundo_apellido" placeholder=" Segundo Apellido ">
+                            <input type="text" class="form-control" id="cli_nat_segund_apellido" name="cli_nat_segund_apellido" placeholder=" Segund Apellido ">
                         </div>
                     </div>
                     <div class="form-group row">       
@@ -58,7 +58,7 @@
                                             
                         <div class="col-md-6">
                             <label for="lugar">direccion</label>
-                            <select class="form-control" name="fk_lugar" id="fk_lugar">
+                            <select class="form-control-lg" name="fk_lugar" id="fk_lugar">
                                 <option value="" selected disabled hidden>Seleccione</option>
                                 @foreach($lugares as $lugarA)
                                     <option value="{{$lugarA->lug_codigo}}">{{$lugarA->lug_nombre}}</option>
@@ -79,6 +79,7 @@
                     </div>
                         
 
+                  
                
                 <div class="form-inline my-auto my-lg-auto" style="margin-left: 45%">
                      <button type="submit" class="btn btn-outline-primary"> Registrar</button>

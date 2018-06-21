@@ -24,7 +24,7 @@ class TiendaController extends Controller
 
     public function create()
     {
-        $tipo_tiendas = array('Candy Shop','Mini Candy Shop');
+        $tipo_tiendas = array('tienda','mini tienda');
         $lugares = Lugar::where('lug_tipo','Parroquia')->orderBy('lug_nombre','asc')->get();
         return view('tiendas.create', compact('tipo_tiendas', 'lugares'));
     }
@@ -56,7 +56,7 @@ class TiendaController extends Controller
 
     public function edit($codigo){
         $tienda = Tienda::find($codigo);
-       	$tipo_tiendas = array('Candy Shop','Mini Candy Shop');
+       	$tipo_tiendas = array('tienda','mini tienda');
         $lugares = Lugar::where('lug_tipo','Parroquia')->orderBy('lug_nombre','asc')->get();
         return view('tiendas.edit', compact('tienda','tipo_tiendas','lugares'));
     }

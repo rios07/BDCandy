@@ -13,7 +13,7 @@
                 <li class="nav-item">  <a class="nav-link" href="{{ route('tiendas') }}"><b>Tiendas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes') }}"><b>Clientes</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ route('productos') }}"><b>Productos</b> </a></li>
-                <li class="nav-item">  <a class="nav-link" href="/Pedidos"><b>Pedidos</b> </a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ route('comprasweb.add')}}"><b>Comprar</b> </a></li>
                 <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
                 @guest
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>

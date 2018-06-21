@@ -40,11 +40,11 @@
  
         <div class="row">
          
-            <table class="table" name="ClienteJ" id="ClienteJ">
+            <table class="table table-striped" name="ClienteJ" id="ClienteJ">
                 <thead class="thead-dark">
-                        <tr>
+                    <tr>
                         <th scope="col"> Rif  </th>
-                        <th scope="col">Denominacion Comercial</th>
+                        <th scope="col">Denominacion Fiscal</th>
                         <th scope="col">Razon Social</th>
                         <th scope="col">Correo Electronico</th>
                         <th scope="col">Pagina Web</th>
@@ -60,11 +60,11 @@
                     @foreach($ClientesJuridicos as $cliente)
                         <tr>
                            <td>{{ $cliente->cli_jur_rif  }}</td> 
-                           <td>{{ $cliente->cli_jur_denominacionComercial }}</td> 
+                           <td>{{ $cliente->cli_jur_denominacion_fiscal }}</td> 
                            <td>{{ $cliente->cli_jur_razon_social }}</td>
-                           <td>{{ $cliente->cli_jur_correoElectronico }}</td>          
-                           <td>{{ $cliente->cli_jur_paginaWeb}}</td> 
-                           <td>{{ $cliente->cli_jur_capitalDisponible }}</td> 
+                           <td>{{ $cliente->cli_jur_correo_electronico }}</td>          
+                           <td>{{ $cliente->cli_jur_pagina_web}}</td> 
+                           <td>{{ $cliente->cli_jur_capital_disponible }}</td> 
                            <td> 
                                 <a href="{{ route('ClientesJ.edit', $cliente->cli_jur_rif) }} " class="btn btn-outline-primary">Modificar</a> 
                                 

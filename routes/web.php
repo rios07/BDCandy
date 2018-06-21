@@ -14,6 +14,8 @@ Route::resource('Clientes/ClienteJ/','ClienteJuridicoController2');
 
 Route::resource('Clientes/ClienteN/','ClienteNaturalController');
 
+Route::resource('/puntos','PuntosController');
+
 Route::post('ClienteJuridicoCreate', 
   ['as' => 'agregar', 'uses' => 'ClienteJuridicoController2@store']);
 
@@ -30,6 +32,16 @@ Route::get('/Clientes/','PagesController@clientes');
 Route::get('/productos','ProductoController')->name('productos');
 
 Route::get('/productos/detalles/{codigo}','ProductoController@show')->where('codigo','[0-9]+')->name('productos.show');
+
+Route::get('/Puntos/create', 'PuntosController@create')->name('puntos.create');	
+
+Route::post('/Puntos', ['as' => 'agregarp', 'uses' => 'PuntosController@store']);
+
+Route::delete('Puntos/{puntos}', 'PuntosController@destroy')->name('punto.destroy');
+
+Route::get('puntos/editarp/{pun_cod}', 'PuntosController@edit')->name('punto.edit');
+
+Route::post('puntos/puntosModificar/{pun_cod}', ['as' => 'modificarp', 'uses' => 'PuntosController@update']);
 
 Route::get('Clientes/ClienteJ/editar/{cli_jur_rif}', 'ClienteJuridicoController2@edit')->name('ClientesJ.edit');
 
@@ -70,5 +82,9 @@ Route::get('/tiendas/detalles/{codigo}/editar', 'TiendaController@edit')->name('
 Route::put('/tiendas/detalles/{tienda}', 'TiendaController@update')->name('tiendas.update');
 
 Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('tiendas.destroy');
+
+Route::get('/comprar', 'ComprawebController@add')->name('comprasweb.add');
+
+Route::get('/comprar/encontrarproducto', 'ComprawebController@findProduct');
 
 Auth::routes();
