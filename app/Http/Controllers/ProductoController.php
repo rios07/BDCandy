@@ -37,12 +37,14 @@ class ProductoController extends Controller
             'sabor' => 'required',
             'color' => 'required',
             'relleno' => '',
-            'tipo' => 'integer',
+            'tipo' => 'required',
+            'precio' => 'required',
         ],[
             'nombre.required' => 'El campo nombre es obligatorio',
             'descripcion.required' => 'El campo descripcion es obligatorio',
             'sabor.required' => 'El campo sabor es obligatorio',
-            'color.required' => 'El campo color es obligatorio'
+            'color.required' => 'El campo color es obligatorio',
+            'precio.required' => 'El campo precio es obligatorio'
         ]);
         if (empty($data['relleno']))
         {
@@ -54,6 +56,7 @@ class ProductoController extends Controller
             $producto->pro_color = $data['color'];
             $producto->fk_fabrica = 1;
             $producto->fk_tipo_producto = $data['tipo'];
+            $producto->pro_precio = $data['precio'];
             $producto->save();
         }
         else
@@ -65,7 +68,8 @@ class ProductoController extends Controller
             $producto->pro_color = $data['color'];
             $producto->pro_relleno = $data['relleno'];
             $producto->fk_fabrica = 1;
-            $producto->fk_tipo_producto = $data['tipo'];            
+            $producto->fk_tipo_producto = $data['tipo'];
+            $producto->pro_precio = $data['precio'];            
             $producto->save();
         }
        return redirect()->route('productos');
@@ -84,12 +88,14 @@ class ProductoController extends Controller
             'pro_sabor' => 'required',
             'pro_color' => 'required',
             'pro_relleno' => '',
-            'fk_tipo_producto' => 'integer'
+            'fk_tipo_producto' => 'integer',
+            'pro_precio' => 'required'
         ],[
             'pro_nombre.required' => 'El campo nombre es obligatorio',
             'pro_descripcion.required' => 'El campo descripcion es obligatorio',
             'pro_sabor.required' => 'El campo sabor es obligatorio',
-            'pro_color.required' => 'El campo color es obligatorio'
+            'pro_color.required' => 'El campo color es obligatorio',
+            'pro_precio.required' => 'El campo precio es obligatorio'
         ]);  
         $producto->update($data);
         return redirect()->route('productos.show', ['codigo' => $producto->pro_codigo]);

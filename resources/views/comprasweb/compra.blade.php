@@ -2,7 +2,7 @@
 @section('title', 'Comprar')
 @section('content')
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
         <h1 class=""> Compra </h1>
         <nav class="navbar navbar-light bg-light justify-content-between">
             <ul class="nav nav-pills">
@@ -10,8 +10,7 @@
                 @guest            
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{Auth::user()->usu_nombre }}<span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

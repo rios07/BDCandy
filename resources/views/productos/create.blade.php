@@ -62,6 +62,11 @@
                     @endif
                 </div>
 
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" class="form-control" name="precio" id="precio" placeholder="Precio del producto" min="1" value="{{ old('precio') }}">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Crear producto</button>                
             </form>
             <a href="{{ route('productos') }}" class="btn btn-link">Regresar al listado de productos</a>

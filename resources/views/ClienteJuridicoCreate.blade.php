@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
         <h1 > Registro de Clientes</h1>
  
     </div>

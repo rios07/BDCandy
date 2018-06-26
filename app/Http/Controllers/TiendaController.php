@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tienda;
 use App\Lugar;
+use App\PedidoTienda;
+use App\Producto;
+use Illuminate\Support\Facades\DB;
 
 class TiendaController extends Controller
 {
@@ -20,6 +23,17 @@ class TiendaController extends Controller
         $tienda = Tienda::find($codigo);
         $lugar = Lugar::where('lug_codigo', $tienda->fk_lugar)->first();
     	return view('tiendas.show', compact('tienda', 'lugar'));
+    }
+
+    public function pedidos($codigo)
+    {
+        $pedidos = DB::table('producto')
+            ->join('pedido_tienda', 'producto.pro_codigo', '=', 'pedido_tienda.fk_producto')
+            ->select('pedido_tienda.*','producto.pro_nombre','producto.pro_codigo')
+            ->where('pedido_tienda.fk_tienda', $codigo)
+            ->get();
+        $tienda = Tienda::find($codigo);
+        return view('tiendas.pedidos', compact('pedidos', 'tienda'));
     }
 
     public function create()

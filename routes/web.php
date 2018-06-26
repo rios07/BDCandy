@@ -87,4 +87,22 @@ Route::get('/comprar', 'ComprawebController@add')->name('comprasweb.add');
 
 Route::get('/comprar/encontrarproducto', 'ComprawebController@findProduct');
 
+Route::get('/ofertas', 'OfertaController')->name('ofertas');
+
+Route::get('/ofertas/nuevo', 'OfertaController@create')->name('ofertas.create');
+
+Route::post('/ofertas','OfertaController@store');
+
+Route::get('/ofertas/{codigo}/editar', 'OfertaController@edit')->name('ofertas.edit');
+
+Route::put('/ofertas/{ofertapro}', 'OfertaController@update')->name('ofertas.update');
+
+Route::delete('/ofertas/{codigo}', 'OfertaController@destroy')->name('ofertas.destroy');
+
+Route::get('/tiendas/detalles/{codigo}/pedidos', 'TiendaController@pedidos')->name('tiendas.pedidos');
+
+Route::get('/pedidos', 'PedidoController')->name('pedidos');
+
+Route::get('/pedidos/cambiar_estatus/{codigo}','PedidoController@edit')->name('pedidos.edit');
+
 Auth::routes();

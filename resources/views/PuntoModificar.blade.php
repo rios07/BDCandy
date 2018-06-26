@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
         <h1 > Registro de xpuntos</h1>
  
     </div>
@@ -34,8 +34,9 @@
                        
 
                 <div class="form-inline my-auto my-lg-auto" style="margin-left: 45%">
-                     <button type="submit" class="btn btn-outline-primary"> Registrar</button>
+                     <button type="submit" class="btn btn-primary"> Registrar</button>
                 </div>
+            <a href="{{ url('/puntos') }}" class="btn btn-link">Regresar al listado de puntos</a>
                
             {{form::close()}}
            

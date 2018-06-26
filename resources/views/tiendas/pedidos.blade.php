@@ -1,14 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Tiendas')
+@section('title', 'Lista de pedidos')
 @section('content')
 
     <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
-        <h1 class=""> {{$title}} </h1>
+        <h1 class="">{{$tienda->tie_rif}} - {{$tienda->tie_nombre}} </h1>
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
-                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
+                <li class="nav-item">  <a class="nav-link" href=" {{ url()->previous() }} "> <b>Regresar a la tienda</b>   </a>     </li>
                 <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
@@ -36,29 +35,23 @@
             </ul>
     </div>
 
-    @if ($tiendas->isNotEmpty())
-    <table class="table table-striped" name="producto" id="tienda">
+    @if ($pedidos->isNotEmpty())
+    <table class="table table-striped" name="producto" id="pedido">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Rif</th>
-            <th scope="col">Nombre</th>
-            <th scopre="col"></th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scopre="col">Fecha de emisión</th>
+            <th scopre="col">Fecha de entregado</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($tiendas as $tienda)
+        @foreach($pedidos as $pedido)
         <tr>
-            <td scope="row">{{ $tienda->tie_rif }}</td>
-            <td scope="row">{{ $tienda->tie_nombre }}</td>
-            <td scope="row">
-                <form action="{{ route('tiendas.destroy', $tienda) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
-                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-primary">Modificar</a>                   
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </td>
+            <td scope="row">{{ $pedido->pro_nombre }}</td>
+            <td scope="row">{{ $pedido->ped_tie_cantidad}}</td>
+            <td scope="row">{{ $pedido->ped_tie_fecha_emision }}</td>
+            <td scope="row">{{ $pedido->ped_tie_fecha_entrega }}</td>
         </tr>
         @endforeach
         </tbody>

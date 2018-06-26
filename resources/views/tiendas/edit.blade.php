@@ -18,7 +18,8 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('tiendas') }}">
+            <form method="POST" action="{{ route('tiendas.update', $tienda ) }}">
+                {{ method_field('PUT') }}
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -58,7 +59,7 @@
                 <div class="form-group">
                     <label for="lugar">Lugar:</label>
                     @if ($lugares->isNotEmpty())
-                        <select class="form-control form-control-lg" name="tie_lugar" id="lugar">
+                        <select class="form-control form-control-lg" name="fk_lugar" id="lugar">
                             @foreach($lugares as $lugar)
                             @if ($lugar->lug_codigo == $tienda->fk_lugar) 
                                 <option selected value="{{$lugar->lug_codigo}}">{{$lugar->lug_nombre}}</option>
@@ -68,7 +69,7 @@
                             @endforeach
                         </select>
                     @else
-                        <select>
+                        <select class="form-control form-control-lg">
                             <option>No hay tipos de tiendas.</option>
                         </select>
                     @endif

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tiendas')
+@section('title', 'Ofertas')
 @section('content')
 
     <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
@@ -8,14 +8,14 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
+                <li class="nav-item"> <a class="nav-link" href="{{ route('ofertas.create')}}">Nueva Oferta</a></li>  
                 <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
                     <form align="right" class="form-inline  my-100 my-lg-0">
                         <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
                         <button class="btn btn-success" type="submit">Buscar</button>
                     </form>
                 </li> 
-                @guest           
+                @guest            
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -36,26 +36,33 @@
             </ul>
     </div>
 
-    @if ($tiendas->isNotEmpty())
-    <table class="table table-striped" name="producto" id="tienda">
+    @if ($promociones->isNotEmpty())
+    <table class="table table-striped" name="promocion" id="promocion">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Rif</th>
-            <th scope="col">Nombre</th>
-            <th scopre="col"></th>
+            <th scope="col">Producto</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Fecha de expiración</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($tiendas as $tienda)
+        @foreach($promociones as $key => $value)
         <tr>
-            <td scope="row">{{ $tienda->tie_rif }}</td>
-            <td scope="row">{{ $tienda->tie_nombre }}</td>
+            <td scope="row">{{ $value->pro_nombre }}</td>
+            <td scope="row">{{ $value->ofer_pro_valor }}</td>
+            @foreach($ofertas as $k => $v)
+            @if(($v->ofer_pro_codigo) == ($value->ofer_pro_codigo))
+            <td scope="row">{{$v->ofe_fecha_inicio}}</td>
+            <td scope="row">{{$v->ofe_fecha_final}}</td>
+            @break
+            @endif
+            @endforeach
             <td scope="row">
-                <form action="{{ route('tiendas.destroy', $tienda) }}" method="POST">
+                <form action="{{ route('ofertas.destroy', $value->ofer_pro_codigo) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
-                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-primary">Modificar</a>                   
+                    <a href=" {{ route('ofertas.edit', ['codigo' => $value->ofer_pro_codigo]) }} " class="btn btn-primary">Modificar</a>                   
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </td>
@@ -64,8 +71,6 @@
         </tbody>
     </table>
     @else
-        <p>No hay tiendas registrados.</p>
+        <p>No hay ofertas registrados.</p>
     @endif
-@endsection
-@section ('bottom')
 @endsection

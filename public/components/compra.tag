@@ -50,6 +50,10 @@
         </tfoot>
     </table>
 
+    <div class="col-xs-7">
+            <input id="credito" class="form-control" type="text" placeholder="Número de tarjeta" />
+    </div>
+
     <button if={detail.length > 0} onclick={__save} class="btn btn-primary btn-lg btn-block">
         Guardar
     </button>
@@ -58,7 +62,7 @@
         var self = this;
 
         // Detalle del comprobante
-        self.client_id = 0;
+        self.client_id = document.getElementById("navbarDropdown").text;
         self.detail = [];
         self.total = 0;
 

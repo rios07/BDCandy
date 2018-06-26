@@ -4,17 +4,19 @@
 
 @section('content')
 
-    <div class="jumbotron text-center">
-        <h1 class="display-2"><b> CandyUcab  </b>  </h1>
-      
-        <nav>
+    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
+        <h1 class="display-2"><b> CandyUcab  </b>  </h1>      
+        <nav> 
             <ul class="nav nav-pills">
-                <li class="nav-item">  <a class="nav-link" href="/Acerca de Nosotros"> <b>Acerca de Nosotros</b>      </a>     </li>
+                <li class="nav-item" >  <a class="nav-link" href="/Acerca de Nosotros"> <b>Acerca de Nosotros</b>      </a>     </li>
                 <li class="nav-item">  <a class="nav-link" href="{{ route('tiendas') }}"><b>Tiendas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes') }}"><b>Clientes</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ route('productos') }}"><b>Productos</b> </a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ route('comprasweb.add')}}"><b>Comprar</b> </a></li>
-                <li class="nav-item">  <a class="nav-link "href="/Promociones"><b>Promociones</b></a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ route('ofertas')}}"><b>Ofertas</b></a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ url('/puntos')}}"><b>Puntos</b></a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ route('pedidos') }}"><b>Pedidos</b></a></li>
+
                 @guest
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
