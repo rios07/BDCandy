@@ -2,9 +2,13 @@
 
 @section('content')
 
-    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
-        <h1 > Alctualizacion de Registro</h1>
- 
+    <div class="jumbotron text-center">
+        <h1 > Actualización de Registro</h1>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <ul class="nav nav-pills">
+                <li class="nav-item">  <a class="nav-link" href="{{url()->previous()}}"> <b>Regresar al listado de clientes naturales</b></a></li> 
+            </ul>
+        </nav> 
     </div>
                    
             {!! Form::open(array('route' => array('modificar',$ClienteNatural->cli_nat_rif))) !!}
@@ -29,8 +33,8 @@
                             <input type="text" class="form-control" id="clie_nat_primer_nombre" name="clie_nat_primer_nombre" placeholder="Nombre" value="{{ old('clie_nat_primer_nombre',$ClienteNatural->clie_nat_primer_nombre) }}">
                         </div>
                         <div class="col-md-4">
-                            <label for="cli_nat_segund_nombre">Segundo Nombre</label>
-                            <input type="text" class="form-control" id="cli_nat_segund_nombre" name="cli_nat_segund_nombre" placeholder="segund nombre" value="{{ old('cli_nat_segund_nombre',$ClienteNatural->cli_nat_segund_nombre) }}">
+                            <label for="cli_nat_segundo_nombre">Segundo Nombre</label>
+                            <input type="text" class="form-control" id="cli_nat_segundo_nombre" name="cli_nat_segundo_nombre" placeholder="segundo nombre" value="{{ old('cli_nat_segundo_nombre',$ClienteNatural->cli_nat_segundo_nombre) }}">
                         </div>   
                         
 
@@ -45,7 +49,7 @@
 
                          <div class="col-md-4">
                             <label for="cli_nat_primer_nombre"> Segundo Apellido</label>
-                            <input type="text" class="form-control" id="cli_nat_segund_apellido" name="cli_nat_segund_apellido" placeholder=" Segund Apellido" value="{{ old('cli_nat_segund_apellido',$ClienteNatural->cli_nat_segund_apellido) }}">
+                            <input type="text" class="form-control" id="cli_nat_segundo_apellido" name="cli_nat_segundo_apellido" placeholder=" Segundo Apellido" value="{{ old('cli_nat_segundo_apellido',$ClienteNatural->cli_nat_segundo_apellido) }}">
                         </div>
                     </div>
                     <div class="form-group row">       
@@ -56,10 +60,10 @@
                    
 
                                             
-                        <div class="col-md-6">
-                            <label for="lugar">direccion</label>
+                        <div class="col-md-2">
+                            <label for="lugar">Direccion</label>
                             <select class="form-control-lg" name="fk_lugar" id="fk_lugar">
-                                <option value="" selected disabled hidden>Seleccione</option>
+                                <option value="" selected disabled hidden>Seleccione una parroquia</option>
                                 @foreach($lugares as $lugarA)
                                     <option value="{{$lugarA->lug_codigo}}">{{$lugarA->lug_nombre}}</option>
                                 @endforeach
@@ -69,7 +73,7 @@
                     </div>
              
                 <div class="form-inline my-auto my-lg-auto" style="margin-left: 45%">
-                    <button type="submit" class="btn btn-outline-primary"> Actualizar</button>
+                    <button type="submit" class="btn btn-primary"> Actualizar</button>
                 </div>
 
                

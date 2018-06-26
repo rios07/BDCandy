@@ -9,9 +9,8 @@
     	    <p>Pagina Web: <strong>{{ $ClienteJuridico->cli_jur_pagina_web}}</strong></p>
             <p>Capital Disponible: <strong>{{  $ClienteJuridico->cli_jur_capital_disponible }}</strong></p>
             <p>Direccion fiscal: {{$lugar->fk_lugar}}</p>
-
     	    <p>
-    	    	<a href="/Clientes/ClienteJ">Regresar al listado de Clientes Juridicos</a>
+    	    	<a href="{{url()->previous()}}">Regresar al listado de Clientes Juridicos</a>
     	    </p>
         </div>
     </div>

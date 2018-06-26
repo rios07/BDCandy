@@ -40,9 +40,11 @@
     <table class="table table-striped" name="producto" id="tienda">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Rif</th>
-            <th scope="col">Nombre</th>
-            <th scopre="col"></th>
+            <th scope="col" class="col-sm-3">Rif</th>
+            <th scope="col" class="col-sm-6">Nombre</th>
+            <th scope="col" >Detalles</th>
+            <th scope="col" >Modificar</th>
+            <th scopre="col">Eliminar</th>   
         </tr>
         </thead>
         <tbody>
@@ -50,13 +52,17 @@
         <tr>
             <td scope="row">{{ $tienda->tie_rif }}</td>
             <td scope="row">{{ $tienda->tie_nombre }}</td>
-            <td scope="row">
+            <td >
+                <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
+            </td>
+            <td >
+                <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-primary pull-middle">Modificar</a>  
+            </td>
+            <td >
                 <form action="{{ route('tiendas.destroy', $tienda) }}" method="POST">
                     {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
-                    <a href=" {{ route('tiendas.edit', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-primary">Modificar</a>                   
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    {{ method_field('DELETE') }}                                     
+                    <button type="submit" class="btn btn-danger pull-left">Eliminar</button>
                 </form>
             </td>
         </tr>

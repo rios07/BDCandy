@@ -1,21 +1,15 @@
 @extends('layouts.app')
+@section('title',"Listado de Clientes Juridicos")
 
 @section('content')
 
-    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
+    <div class="jumbotron text-center">
         <h1 class=""> Cliente Juridico </h1>
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href="{{ url('/') }}"> <b>CandyUcab</b>      </a>     </li>
-                <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes/ClienteJ') }}"> Clientes Juridico</a>     </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/Clientes/ClienteJ/create') }}">Nuevo Cliente</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 10%;">
-                    <form align="right" class="form-inline  my-100 my-lg-0">
-                        <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
-                    </form>
-                </li>  
                 @guest                    
                 @else
                     <li class="nav-item dropdown">
@@ -40,7 +34,7 @@
  
         <div class="row">
          
-            <table class="table table-striped" name="ClienteJ" id="ClienteJ">
+            <table class="table" name="ClienteJ" id="ClienteJ">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"> Rif  </th>
@@ -59,28 +53,25 @@
                 <tbody>
                     @foreach($ClientesJuridicos as $cliente)
                         <tr>
-                           <td>{{ $cliente->cli_jur_rif  }}</td> 
-                           <td>{{ $cliente->cli_jur_denominacion_fiscal }}</td> 
-                           <td>{{ $cliente->cli_jur_razon_social }}</td>
-                           <td>{{ $cliente->cli_jur_correo_electronico }}</td>          
-                           <td>{{ $cliente->cli_jur_pagina_web}}</td> 
-                           <td>{{ $cliente->cli_jur_capital_disponible }}</td> 
+                            <td>{{ $cliente->cli_jur_rif  }}</td> 
+                            <td>{{ $cliente->cli_jur_denominacion_fiscal }}</td> 
+                            <td>{{ $cliente->cli_jur_razon_social }}</td>
+                            <td>{{ $cliente->cli_jur_correo_electronico }}</td>          
+                            <td>{{ $cliente->cli_jur_pagina_web}}</td> 
+                            <td>{{ $cliente->cli_jur_capital_disponible }}</td> 
+                            <td> 
+                                <a href=" {{ route('ClienteJ.show',  $cliente->cli_jur_rif) }}" class="btn btn-info" >Detalles</a>
+                            </td>
+                            <td> 
+                                <a href="{{ route('ClientesJ.edit', $cliente->cli_jur_rif) }} " class="btn btn-primary">Modificar</a>    
+                            </td>
                            <td> 
-                                <a href="{{ route('ClientesJ.edit', $cliente->cli_jur_rif) }} " class="btn btn-outline-primary">Modificar</a> 
-                                
-                           </td>
-                           <td> 
-
                                 <form action="{{ route('ClientesJuridicos.destroy', $cliente->cli_jur_rif) }} " method="post">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-outline-primary" > Eliminar  </button>
+                                    <button type="submit" class="btn btn-danger" >Eliminar</button>
                                 </form> 
-                            </td>
-                           <td> 
-                            <a href=" {{ route('ClienteJ.show',  $cliente->cli_jur_rif) }}" class="btn btn-outline-primary" >  Detalles </a>
-
-                           </td>
+                            </td>                            
                         </tr>
                     @endforeach
                 </tbody>

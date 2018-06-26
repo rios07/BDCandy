@@ -22,9 +22,6 @@ Route::resource('Clientes/ClienteJ/','ClienteJuridicoController2');
 
 Route::resource('Clientes/ClienteN/','ClienteNaturalController');
 
-Route::resource('/puntos','PuntosController');
-
-
 Route::post('ClienteJuridicoCreate', ['as' => 'agregar', 'uses' => 'ClienteJuridicoController2@store']);
 
 Route::delete('Clientes/ClienteJ/{ClientesJuridicos}', 'ClienteJuridicoController2@destroy')->name('ClientesJuridicos.destroy');
@@ -34,6 +31,8 @@ Route::get('Clientes/ClienteJ/editar/{cli_jur_rif}', 'ClienteJuridicoController2
 Route::post('Clientes/ClienteJ/ClienteJuridicoModificar/{cli_jur_rif}', ['as' => 'modificarj', 'uses' => 'ClienteJuridicoController2@update']);
 
 Route::get('Clientes/ClienteJ/detalles/{cli_jur_rif}','ClienteJuridicoController2@show')->name('ClienteJ.show');
+
+Route::resource('/puntos','PuntosController');
 
 Route::get('/Puntos/create', 'PuntosController@create')->name('puntos.create');	
 
@@ -56,8 +55,6 @@ Route::post('Clientes/ClienteN/ClienteNaturalModificar/{cli_nat_rif}', ['as' => 
 
 Route::get('Clientes/ClienteN/detalles/{cli_nat_rif}','ClienteNaturalController@show')->name('ClienteN.show');
 
-
-
 Route::get('/productos','ProductoController')->name('productos');
 
 Route::get('/productos/detalles/{codigo}','ProductoController@show')->where('codigo','[0-9]+')->name('productos.show');
@@ -71,7 +68,6 @@ Route::get('/productos/detalles/{codigo}/editar', 'ProductoController@edit')->na
 Route::put('/productos/detalles/{producto}', 'ProductoController@update')->name('productos.update');
 
 Route::delete('/productos/detalles/{producto}', 'ProductoController@destroy')->name('productos.destroy');
-
 
 Route::get('/tiendas','TiendaController')->name('tiendas');
 
@@ -88,4 +84,5 @@ Route::put('/tiendas/detalles/{tienda}', 'TiendaController@update')->name('tiend
 Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('tiendas.destroy');
 
 Route::resource('/ventas','VentasController');
+
 Auth::routes();

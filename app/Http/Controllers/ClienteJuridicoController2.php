@@ -23,11 +23,7 @@ class ClienteJuridicoController2 extends Controller
     public function index()
     {
         //
-        $ClientesJuridicos=DB::table('cliente_juridico')->get();
-       
-
-      
-        
+        $ClientesJuridicos=DB::table('cliente_juridico')->get();         
         return view ('ClienteJuridicoShow', compact('ClientesJuridicos'));
     }
 
@@ -68,8 +64,31 @@ class ClienteJuridicoController2 extends Controller
         $ClientesJuridico->cli_jur_capital_disponible= $request->cli_jur_capital_disponible;
        
         $ClientesJuridico->fk_lugar=$request->fk_lugar;
+
+          $debito=new Debito();
+        $debito->med_pag_tar_deb_numero=$request->med_pag_tar_deb_numero;
+        $debito->med_pag_tar_deb_tipo=$request->med_pag_tar_deb_tipo;
+        $debito->med_pag_tar_deb_banco=$request->med_pag_tar_deb_banco;
+        $debito->fk_cliente_juridico=$request->cli_jur_rif;
+       
+        $credito=new Credito();
+        $credito->med_pag_tar_cred_numero;
+        $credito->med_pag_tar_cred_tipo;
+        $credito->med_pag_tar_cred_banco;
+        $credito->med_pag_tar_cred_fecha_vencimiento;
+        $credito->fk_cliente_juridico=$request->cli_jur_rif;
+
+        $cheque= new Cheque();
+        $cheque->med_pag_che_numero=$request->med_pag_che_numero;
+        $cheque->med_pag_che_cuenta=$request->med_pag_che_cuenta;
+        $cheque->med_pag_che_banco=$request->med_pag_che_banco;
+        $cheque->fk_cliente_juridico=$request->cli_jur_rif;
+
        
         $ClientesJuridico->save();
+         $debito->save();
+         $credito->save();
+         $cheque->save();
 
       return redirect()->action('ClienteJuridicoController2@index');
     

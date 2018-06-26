@@ -2,9 +2,13 @@
 
 @section('content')
 
-    <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
+    <div class="jumbotron text-center">
         <h1 > Alctualizacion de Registro</h1>
- 
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <ul class="nav nav-pills">
+                <li class="nav-item">  <a class="nav-link" href="{{url()->previous()}}"> <b>Regresar al listado de clientes juridicos</b></a></li> 
+            </ul>
+        </nav>  
     </div>
                    
             {!! Form::open(array('route' => array('modificarj',$ClientesJuridico->cli_jur_rif))) !!}
@@ -49,8 +53,8 @@
                     </div>             
                        
                     <div class="form-group row">
-                        <div class="col-md-6">
-                            <label for="lugar">direccion Principal</label>
+                        <div class="col-md-2">
+                            <label for="lugar">Direccion Principal</label>
                             <select class="form-control-lg" name="fk_lugar" id="fk_lugar">
                                 <option value="" selected disabled hidden>Seleccione</option>
                                 @foreach($lugares as $lugarA)
@@ -64,7 +68,7 @@
 
                
                 <div class="form-inline my-auto my-lg-auto" style="margin-left: 45%">
-                    <button type="submit" class="btn btn-outline-primary"> Actualizar</button>
+                    <button type="submit" class="btn btn-primary"> Actualizar</button>
                 </div>
 
                
