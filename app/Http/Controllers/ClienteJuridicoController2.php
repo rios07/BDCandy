@@ -65,7 +65,7 @@ class ClienteJuridicoController2 extends Controller
        
         $ClientesJuridico->fk_lugar=$request->fk_lugar;
 
-          $debito=new Debito();
+        $debito=new Debito();
         $debito->med_pag_tar_deb_numero=$request->med_pag_tar_deb_numero;
         $debito->med_pag_tar_deb_tipo=$request->med_pag_tar_deb_tipo;
         $debito->med_pag_tar_deb_banco=$request->med_pag_tar_deb_banco;
@@ -86,9 +86,9 @@ class ClienteJuridicoController2 extends Controller
 
        
         $ClientesJuridico->save();
-         $debito->save();
-         $credito->save();
-         $cheque->save();
+        $debito->save();
+        $credito->save();
+        $cheque->save();
 
       return redirect()->action('ClienteJuridicoController2@index');
     
@@ -160,6 +160,12 @@ class ClienteJuridicoController2 extends Controller
     public function destroy($cli_jur_rif)
     {
         //ClientesJuridico->cli_jur_rif
+        $cheque = Cheque::where('fk_cliente_juridico', $cli_jur_rif);
+        $debito = Debito::where('fk_cliente_juridico', $cli_jur_rif);
+        $credito = Credito::where('fk_cliente_juridico', $cli_jur_rif);
+        $cheque->delete();
+        $debito->delete();
+        $credito->delete();
         $ClientesJuridicos=DB::table('cliente_juridico')->where('cli_jur_rif',$cli_jur_rif)
                                                        ->get();
      

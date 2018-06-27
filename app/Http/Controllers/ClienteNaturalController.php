@@ -52,15 +52,13 @@ class ClienteNaturalController extends Controller
 
         $ClienteNatural=new ClienteNatural();
        
-        $ClienteNatural->cli_nat_rif= $request->cli_nat_rif;
-       
+        $ClienteNatural->cli_nat_rif= $request->cli_nat_rif;       
         $ClienteNatural->cli_nat_ci= $request->cli_nat_ci;
         $ClienteNatural->clie_nat_primer_nombre= $request->clie_nat_primer_nombre;
-        $ClienteNatural->cli_nat_segund_nombre= $request->cli_nat_segund_nombre;
+        $ClienteNatural->cli_nat_segundo_nombre= $request->cli_nat_segundo_nombre;
         $ClienteNatural->cli_nat_primer_apellido= $request->cli_nat_primer_apellido;
-        $ClienteNatural->cli_nat_segund_apellido= $request->cli_nat_segund_apellido;
-        $ClienteNatural->cli_nat_correo_electronico= $request->cli_nat_correo_electronico;
-       
+        $ClienteNatural->cli_nat_segundo_apellido= $request->cli_nat_segundo_apellido;
+        $ClienteNatural->cli_nat_correo_electronico= $request->cli_nat_correo_electronico;       
         $ClienteNatural->fk_lugar=$request->fk_lugar;
         
         $ClienteNatural->save();
@@ -112,9 +110,9 @@ class ClienteNaturalController extends Controller
         $ClienteNatural->cli_nat_rif= $request->input('cli_nat_rif');
         $ClienteNatural->cli_nat_ci= $request->input('cli_nat_ci');
         $ClienteNatural->clie_nat_primer_nombre= $request->input('clie_nat_primer_nombre');
-        $ClienteNatural->cli_nat_segund_nombre= $request->input('cli_nat_segund_nombre');
+        $ClienteNatural->cli_nat_segundo_nombre= $request->input('cli_nat_segund_nombre');
         $ClienteNatural->cli_nat_primer_apellido= $request->input('cli_nat_primer_apellido');
-        $ClienteNatural->cli_nat_segund_apellido= $request->input('cli_nat_segund_apellido');
+        $ClienteNatural->cli_nat_segundo_apellido= $request->input('cli_nat_segund_apellido');
         $ClienteNatural->cli_nat_correo_electronico= $request->input('cli_nat_correo_electronico');
         $ClienteNatural->fk_lugar=$request->input('fk_lugar');
         
@@ -132,10 +130,9 @@ class ClienteNaturalController extends Controller
      */
     public function destroy($cli_nat_rif)
     {
-        //
-         $ClienteNatural=DB::table('cliente_natural')->where('cli_nat_rif',$cli_nat_rif)
-                                                       ->get();
-     
+        //        
+        $ClienteNatural=DB::table('cliente_natural')->where('cli_nat_rif',$cli_nat_rif)
+                                                       ->get();     
         $ClienteNatural= ClienteNatural::findOrFail($cli_nat_rif);
         $ClienteNatural->delete();
         return redirect()->action('ClienteNaturalController@index');

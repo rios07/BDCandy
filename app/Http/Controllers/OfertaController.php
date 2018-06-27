@@ -14,12 +14,12 @@ class OfertaController extends Controller
     public function __invoke()
     {
         $promociones = DB::table('producto')
-            ->join('ofer_pro', 'producto.pro_codigo', '=', 'ofer_pro.fk_producto')
-            ->select('ofer_pro.*', 'producto.pro_nombre')->orderBy('ofer_pro_codigo', 'asc')
+            ->join('ofe_pro', 'producto.pro_codigo', '=', 'ofe_pro.fk_producto')
+            ->select('ofe_pro.*', 'producto.pro_nombre')->orderBy('ofe_pro_codigo', 'asc')
             ->get();
         $ofertas = DB::table('oferta')
-            ->join('ofer_pro','oferta.ofe_codigo', '=', 'ofer_pro.fk_oferta')
-            ->select('oferta.*','ofer_pro_codigo')->orderBy('ofer_pro_codigo', 'asc')
+            ->join('ofe_pro','oferta.ofe_codigo', '=', 'ofe_pro.fk_oferta')
+            ->select('oferta.*','ofe_pro_codigo')->orderBy('ofe_pro_codigo', 'asc')
             ->get();
     	$title = "Lista de ofertas";
     	return view('ofertas.index', compact('promociones', 'ofertas', 'title'));
@@ -64,7 +64,7 @@ class OfertaController extends Controller
                 $ofertapro = new OfertaProducto;
                 $ofertapro->fk_oferta = $codigo->ofe_codigo;
                 $ofertapro->fk_producto = $data['producto'];
-                $ofertapro->ofer_pro_valor = $data['valor'];  
+                $ofertapro->ofe_pro_valor = $data['valor'];  
                 $ofertapro->save();
             }
         }
@@ -81,12 +81,12 @@ class OfertaController extends Controller
     public function update(OfertaProducto $ofertapro){
         $data = request()->validate([
             'fk_producto' => 'required',
-            'ofer_pro_valor' => 'required|integer',
+            'ofe_pro_valor' => 'required|integer',
             'ofe_fecha_inicio' => 'required|date|after:today',
             'ofe_fecha_final' => 'required|date|after:ofe_fecha_inicio'
         ],[
             'fk_producto.required' => 'El campo producto es obligatorio',
-            'ofer_pro_valor.required' => 'El campo valor es obligatorio',
+            'ofe_pro_valor.required' => 'El campo valor es obligatorio',
             'ofe_fecha_inicio.after' => 'El campo fecha de inicio debe ser mayor a la fecha actual',
             'ofe_fecha_final.after' => 'El campo fecha de expiración debe ser mayor a la fecha de inicio',
             'ofe_fecha_inicio.required' => 'El campo fecha de inicio es obligatorio',
@@ -98,9 +98,10 @@ class OfertaController extends Controller
         return redirect()->route('ofertas');
     }
 
-    public function destroy(Producto $producto)
+    public function destroy($codigo)
     {
-        $producto->delete();
-        return redirect()->route('productos');
+        $oferta = OfertaProducto::find($codigo);
+        $oferta->delete();
+        return redirect()->route('ofertas');
     }
 }

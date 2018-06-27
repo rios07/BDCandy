@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class OfertaProducto extends Model
 {
-    protected $table = 'ofer_pro';
+    protected $table = 'ofe_pro';
 
-    protected $primaryKey = 'ofer_pro_codigo';
+    protected $primaryKey = 'ofe_pro_codigo';
 
     public $incrementing = false;
     
@@ -16,5 +16,5 @@ class OfertaProducto extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['ofer_pro_valor','fk_producto','fk_oferta'];
+    protected $fillable = ['ofe_pro_valor','fk_producto','fk_oferta'];
 }

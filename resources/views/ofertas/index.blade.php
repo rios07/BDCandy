@@ -8,13 +8,7 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('ofertas.create')}}">Nueva Oferta</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
-                    <form align="right" class="form-inline  my-100 my-lg-0">
-                        <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-success" type="submit">Buscar</button>
-                    </form>
-                </li> 
+                <li class="nav-item"> <a class="nav-link" href="{{ route('ofertas.create')}}">Nueva Oferta</a></li> 
                 @guest            
                 @else
                     <li class="nav-item dropdown">
@@ -50,19 +44,19 @@
         @foreach($promociones as $key => $value)
         <tr>
             <td scope="row">{{ $value->pro_nombre }}</td>
-            <td scope="row">{{ $value->ofer_pro_valor }}</td>
+            <td scope="row">{{ $value->ofe_pro_valor }}</td>
             @foreach($ofertas as $k => $v)
-            @if(($v->ofer_pro_codigo) == ($value->ofer_pro_codigo))
+            @if(($v->ofe_pro_codigo) == ($value->ofe_pro_codigo))
             <td scope="row">{{$v->ofe_fecha_inicio}}</td>
             <td scope="row">{{$v->ofe_fecha_final}}</td>
             @break
             @endif
             @endforeach
             <td scope="row">
-                <form action="{{ route('ofertas.destroy', $value->ofer_pro_codigo) }}" method="POST">
+                <form action="{{ route('ofertas.destroy', $value->ofe_pro_codigo) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <a href=" {{ route('ofertas.edit', ['codigo' => $value->ofer_pro_codigo]) }} " class="btn btn-primary">Modificar</a>                   
+                    <a href=" {{ route('ofertas.edit', ['codigo' => $value->ofe_pro_codigo]) }} " class="btn btn-primary">Modificar</a>                   
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </td>

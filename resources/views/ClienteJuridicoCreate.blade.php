@@ -69,9 +69,9 @@
                         <h3> Metodos de Pago</h3>
                     <div  class="form-group row" id="div_metodos_pago">
                         <div class="col-md-3" id="debito">
-                            <label for="formGroup"> Metodos de Pago </label>
-                            <select name="" id="" class="form-control-lg" onchange="myFunction(this)" required>
-                                <option value="">Seleccione Metodo </option>
+                            <label for="formGroup"> Metodo de Pago </label>
+                            <select name="" id="select_metodo" class="form-control-lg" onchange="myFunction(this)" required>
+                                <option value="0" selected disabled hidden>Seleccione su metodo</option>
                                 <option value="cheque">cheque</option>
                                 <option value="debito">debito</option>
                                 <option value="credito">credito</option>
@@ -83,7 +83,7 @@
                     
                     <div class="form-group row">
                         <span class="input-group-btn">
-                           <button type="button" class="btn btn-primary" onclick="Metodo_Pago_dinamico()">Otro metodo</button>
+                           <button type="button" class="btn btn-primary" onclick="Metodo_Pago_dinamico()">Otro metodo de pago</button>
                         </span>
                     </div>      
                         
@@ -96,13 +96,16 @@
 <script>
     var add=1;
     function Metodo_Pago_dinamico() {
-        add++;
+        $("#select_metodo").removeAttr("disabled");
+        $("#select_metodo").val(0);
+        /*add++;
         var objeto = document.getElementById('div_metodos_pago');
         var divtest = document.createElement("div");
         divtest.setAttribute("class","form-group removeclass"+add);
+        divtest.setAttribute("id","")
         var rdiv ='removeclass'+add;
-        divtest.innerHTML='<div class="form-group row" id="debito"> <label for="formGroup"> Metodos de Pago </label><select name="" id="" class="form-control" required>  <option value="">Seleccione Metodo </option> <option>cheque</option> <option>debito</option> <option>credito</option> </select><div class="form-group row"<span class="input-group-btn">  <button type="button" class="btn btn-outline-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div></div>'
-        objeto.appendChild(divtest)  
+        divtest.innerHTML='<div class="form-group row" id="debito"> <label for="formGroup"> Metodo de Pago </label><select name="" id="" class="form-control" onchange="myFunction(this)" required>  <option value="">Seleccione Metodo </option> <option>cheque</option> <option>debito</option> <option>credito</option> </select><div class="form-group row"<span class="input-group-btn">  <button type="button" class="btn btn-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div></div>'
+        objeto.appendChild(divtest)*/  
     }
     
       function Metodo_Pago_dinamico_credito() {
@@ -111,7 +114,7 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class","form-group removeclass"+add);
         var rdiv ='removeclass'+add;
-        divtest.innerHTML='<div class="form-group row"><div class="col-md-3"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_cred_tar_numero" name="med_pag_cred_tar_numero" placeholder="numero de tarjeta"></div><div class="col-md-3"><label for="cli_nat_ci">nombre impreso</label><input type="text" class="form-control" id="med_pag_cred_tar_tipo" name="med_pag_cred_tar_tipo" placeholder="tipo"></div><div class="col-md-3"><label for="med_pag_cred_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_cred_tar_banco" name="med_pag_cred_tar_banco" placeholder="banco"></div><div class="form-group row"><span class="input-group-btn"><button type="button" class="btn btn-outline-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div></div>'
+        divtest.innerHTML='<div class="form-group row"><div class="col-md-3"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_cred_tar_numero" name="med_pag_cred_tar_numero" placeholder="numero de tarjeta"></div><div class="col-md-3"><label for="cli_nat_ci">nombre impreso</label><input type="text" class="form-control" id="med_pag_cred_tar_tipo" name="med_pag_cred_tar_tipo" placeholder="tipo"></div><div class="col-md-3"><label for="med_pag_cred_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_cred_tar_banco" name="med_pag_cred_tar_banco" placeholder="banco"></div><div class="form-group col-md-4"><br><span class="input-group-btn"><button type="button" class="btn btn-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div></div>'
         objeto.appendChild(divtest)  
     }
       function Metodo_Pago_dinamico_debito() {
@@ -120,7 +123,7 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class","form-group removeclass"+add);
         var rdiv ='removeclass'+add;
-        divtest.innerHTML= '<div class="form-group row"><div class="col-md-4"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_tar_deb_numero" name="med_pag_tar_deb_numero"placeholder="numero de tarjeta"></div><div class="col-md-4"><label for="med_pag_tar_deb_tipo">nombre impreso</label><input type="text" class="form-control" id="med_pag_tar_deb_tipo" name="med_pag_tar_deb_tipo" placeholder="nombre impreso"></div><div class="col-md-4"><label for="med_pag_tar_deb_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_tar_deb_banco" name="med_pag_tar_deb_banco" placeholder="banco"></div> <div class="form-group row"><span class="input-group-btn"><button type="button" class="btn btn-outline-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div> </div>'   
+        divtest.innerHTML= '<div class="form-group row"><div class="col-md-4"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_tar_deb_numero" name="med_pag_tar_deb_numero"placeholder="numero de tarjeta"></div><div class="col-md-4"><label for="med_pag_tar_deb_tipo">nombre impreso</label><input type="text" class="form-control" id="med_pag_tar_deb_tipo" name="med_pag_tar_deb_tipo" placeholder="nombre impreso"></div><div class="col-md-4"><label for="med_pag_tar_deb_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_tar_deb_banco" name="med_pag_tar_deb_banco" placeholder="banco"></div> <div class="form-group col-md-4"><br><span class="input-group-btn"><button type="button" class="btn btn-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span></div> </div>'   
         objeto.appendChild(divtest)  
     }
        function Metodo_Pago_dinamico_cheque() {
@@ -129,19 +132,20 @@
         var divtest = document.createElement("div");
         divtest.setAttribute("class","form-group removeclass"+add);
         var rdiv ='removeclass'+add;
-        divtest.innerHTML=' <div class="form-group row"><div class="col-md-4"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_che_numero" name="med_pag_che_numero" placeholder="numero de tarjeta"></div><div class="col-md-4"><label for="cli_nat_ci">nombre impreso</label><input type="text" class="form-control" id="med_pag_che_cuenta" name="med_pag_che_cuenta" placeholder="nombre impreso">   </div><div class="col-md-4"><label for="med_pag_cred_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_che_banco" name="med_pag_che_banco" placeholder="banco"></div><div class="form-group row"><span class="input-group-btn"><button type="button" class="btn btn-outline-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span> </div></div>   '
+        divtest.innerHTML='<div class="form-group row"><div class="col-md-4"><label for="numerotarjeta">Numero Tarjeta</label><input type="text" class="form-control" id="med_pag_che_numero" name="med_pag_che_numero" placeholder="numero de tarjeta"></div><div class="col-md-4"><label for="cli_nat_ci">nombre impreso</label><input type="text" class="form-control" id="med_pag_che_cuenta" name="med_pag_che_cuenta" placeholder="nombre impreso">   </div><div class="col-md-4"><label for="med_pag_cred_banco"> Nombre </label><input type="text" class="form-control" id="med_pag_che_banco" name="med_pag_che_banco" placeholder="banco"></div><div class="form-group col-md-4"><br><span class="input-group-btn"><button type="button" class="btn btn-primary" onclick="remove_metodo_pago_dinamico(this)">Eliminar Metodo</button></span> </div></div>   '
         objeto.appendChild(divtest)  
     }
     
     function remove_metodo_pago_dinamico(elemento) {
-        var objeto=elemento.parentNode.parentNode;
-        console.log(objeto);   
-        elemento.parentNode.parentNode.parentNode.removeChild(objeto);
-
+        var objeto=elemento.parentNode.parentNode.parentNode;
+        console.log(objeto);
+        $("#select_metodo").removeAttr("disabled");
+        elemento.parentNode.parentNode.parentNode.parentNode.removeChild(objeto);
     }
 
     function myFunction(elemento) {
         var x = elemento.value;
+        $("#select_metodo").attr("disabled", "true");
         if (x=='credito') {
 
             Metodo_Pago_dinamico_credito();

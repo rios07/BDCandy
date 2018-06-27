@@ -15,7 +15,7 @@ class PedidoController extends Controller
             ->select('usuario.usu_nombre', 'compra_web.*')->orderBy('com_web_codigo', 'asc')
             ->get();
         $status = DB::table('compra_web')
-            ->join('status','compra_web.fk_estatus', '=', 'status.est_codigo')
+            ->join('estatus','compra_web.fk_estatus', '=', 'estatus.est_codigo')
             ->select('compra_web.*','est_nombre')->orderBy('com_web_codigo', 'asc')
             ->get();
     	$title = "Lista de pedidos";

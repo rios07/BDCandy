@@ -43,12 +43,12 @@
 
                 <div class="form-group">
                     <label for="valor">Valor</label>
-                    <input type="number" class="form-control" name="ofer_pro_valor" id="valor" placeholder="Debe ser unico" value="{{ old('ofer_pro_valor',$ofertapro->ofer_pro_valor) }}">
+                    <input type="number" class="form-control" name="ofe_pro_valor" id="valor" placeholder="Debe ser unico" value="{{ old('ofe_pro_valor',$ofertapro->ofe_pro_valor) }}">
                 </div>
 
                 <div class="form-group">
                     <label for="fecha_inicio">Fecha de inicio</label>
-                    <input type="date" class="form-control" name="ofe_fecha_inicio" id="fecha_fianl" placeholder="Nombre" value="{{ old('ofe_fecha_inicio',$oferta->ofe_fecha_inicio) }}">
+                    <input type="date" class="form-control" name="ofe_fecha_inicio" id="fecha_inicial" placeholder="Nombre" value="{{ old('ofe_fecha_inicio',$oferta->ofe_fecha_inicio) }}">
                 </div>
 
                 <div class="form-group">
