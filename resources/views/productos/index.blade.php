@@ -40,6 +40,7 @@
     <table class="table table-striped" name="producto" id="producto">
         <thead class="thead-dark">
         <tr>
+            <th scope="col">Imagen</th>
             <th scope="col" class="col-sm-7">Nombre</th>
             <th scope="col" >Detalles</th>
             <th scope="col" >Modificar</th>
@@ -49,6 +50,7 @@
         <tbody>
         @foreach($productos as $producto)
         <tr>
+            <td scope="row"><img src="{{ asset('image/'.$producto->pro_imagen)}}" height="75" width="80" ></td>
             <td scope="row">{{ $producto->pro_nombre }}</td>
             <td>
                 <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-info">Detalles</a>

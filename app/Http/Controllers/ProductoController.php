@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Producto;
 use App\TipoProducto;
+use Image;
 
 class ProductoController extends Controller
 {
@@ -29,7 +30,7 @@ class ProductoController extends Controller
         return view('productos.create', compact('tipo_productos'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $data = request()->validate([
             'nombre' => 'required',
@@ -39,6 +40,7 @@ class ProductoController extends Controller
             'relleno' => '',
             'tipo' => 'required',
             'precio' => 'required',
+            'imagen' => 'required'
         ],[
             'nombre.required' => 'El campo nombre es obligatorio',
             'descripcion.required' => 'El campo descripcion es obligatorio',
@@ -46,8 +48,15 @@ class ProductoController extends Controller
             'color.required' => 'El campo color es obligatorio',
             'precio.required' => 'El campo precio es obligatorio'
         ]);
+        $ruta = public_path().'/image/';
+        $imagenOriginal = $request->file('imagen');
+        $imagen = Image::make($imagenOriginal);
+        $hoy = date("Y-m-d H-i-s");
+        $temp_name = $hoy . $imagenOriginal->getClientOriginalName();
+        $imagen->resize(75,80);
+        $imagen->save($ruta . $temp_name);
         if (empty($data['relleno']))
-        {
+        {            
             unset($data['relleno']);
             $producto = new Producto;
             $producto->pro_nombre = $data['nombre'];
@@ -57,6 +66,7 @@ class ProductoController extends Controller
             $producto->fk_fabrica = 1;
             $producto->fk_tipo_producto = $data['tipo'];
             $producto->pro_precio = $data['precio'];
+            $producto->pro_imagen = $temp_name;
             $producto->save();
         }
         else
@@ -69,7 +79,8 @@ class ProductoController extends Controller
             $producto->pro_relleno = $data['relleno'];
             $producto->fk_fabrica = 1;
             $producto->fk_tipo_producto = $data['tipo'];
-            $producto->pro_precio = $data['precio'];            
+            $producto->pro_precio = $data['precio'];
+            $producto->pro_imagen = $temp_name;            
             $producto->save();
         }
        return redirect()->route('productos');
@@ -105,5 +116,5 @@ class ProductoController extends Controller
     {
         $producto->delete();
         return redirect()->route('productos');
-    }
+    }  
 }

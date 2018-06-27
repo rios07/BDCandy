@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('productos') }}">
+            <form method="POST" action="{{ url('productos') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -65,6 +65,11 @@
                 <div class="form-group">
                     <label for="precio">Precio:</label>
                     <input type="number" class="form-control" name="precio" id="precio" placeholder="Precio del producto" min="1" value="{{ old('precio') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen del producto:</label>
+                    <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*" value="{{ old('imagen') }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Crear producto</button>                
