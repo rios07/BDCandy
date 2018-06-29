@@ -95,9 +95,17 @@ Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('t
 
 //Compra en linea
 
-Route::get('/comprar', 'ComprawebController@add')->name('comprasweb.add');
+Route::get('/compra', 'ComprawebController@add')->name('comprasweb.add');
 
-Route::get('/comprar/encontrarproducto', 'ComprawebController@findProduct');
+Route::get('/compra/encontrarproducto', 'ComprawebController@findProduct');
+
+Route::get('/compra/encontrarcredito', 'ComprawebController@findCredito');
+
+Route::get('/compra/encontrartienda', 'ComprawebController@findTienda');
+
+Route::get('compra/encontrarusuario', 'ComprawebController@encontrar');
+
+Route::post('/compra/guardar','ComprawebController@guardar');
 
 //Ofertas
 

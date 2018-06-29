@@ -29,10 +29,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h2 class="page-header">
-                Nueva compra
-            </h2>
+        <div class="col-md-12">            
             <compra></compra>
         </div>
     </div>

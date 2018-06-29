@@ -1,4 +1,8 @@
 <compra>
+    <div class="ocultar">
+    <h2 class="page-header">
+                Nueva compra
+    </h2>
     <div class="row">
         <div class="col-xs-7">
             <input id="product" class="form-control" type="text" placeholder="Nombre del producto" />
@@ -19,7 +23,7 @@
         </div>
     </div>
 
-    <hr />
+    <hr>
 
     <table class="table table-striped">
         <thead>
@@ -49,26 +53,106 @@
         </tr>
         </tfoot>
     </table>
-
-    <div class="col-xs-7">
-            <input id="credito" class="form-control" type="text" placeholder="Número de tarjeta" />
+    <button if={detail.length > 0 && total > 0} onclick={__pagar}  class="btn btn-primary btn-lg btn-block">
+        Pagar
+    </button> 
+    </div>  
+    <div class="mostrar" hidden>
+    <h2 class="page-header">
+        Pago con tarjeta de credito
+    </h2>
+    <div class="row">
+        <div class="col-xs-5">
+            <input style="width: 430px;" id="tarjeta" class="form-control" type="text"  placeholder="Número de tarjeta"/>
+        </div>
+        <div class="col-xs-2">
+            <input class="form-control" type="text"  placeholder="Banco" value="{banco}" readonly />
+        </div>
+        <div class="col-xs-2">
+            <input class="form-control" type="text"  placeholder="Tipo" value="{tipo}" readonly/>
+        </div>
+        <div class="col-xs-2">
+            <input id="monto" class="form-control" type="number"  placeholder="Monto a pagar"/>
+        </div>
+        <div class="col-xs-1">
+            <button onclick={__addCreditoToDetail} class="btn btn-primary form-control" id="btn-agregar">
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+        </div>
     </div>
 
-    <button if={detail.length > 0} onclick={__save} class="btn btn-primary btn-lg btn-block">
-        Guardar
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width:40px;"></th>
+            <th>Número de tarjeta</th>
+            <th >Banco</th>
+            <th >Tipo</th>
+            <th style="width:100px;">Monto a pagar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr each={detail2}>
+            <td>
+                <button onclick={__removeTarjetaFromDetail} class="btn btn-danger btn-xs btn-block">X</button>
+            </td>
+            <td>{name}</td>
+            <td>{banco}</td>
+            <td>{tipo}</td>
+            <td class="text-right">$ {monto}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4" class="text-right"><b>Restante</b></td>
+            <td class="text-right">$ {montot.toFixed(2)}</td>
+        </tr>
+        </tfoot>
+    </table>
+
+    <button if={detail.length > 0 && montot == 0} onclick={__save} class="btn btn-primary btn-lg btn-block">
+        Generar compra
     </button>
+    </div>
 
     <script>
         var self = this;
 
         // Detalle del comprobante
         self.client_id = document.getElementById("navbarDropdown").text;
+        self.usuario_id;
+        self.tienda_id;
         self.detail = [];
+        self.detail2 = [];
         self.total = 0;
+        self.montot = 0;
 
         self.on('mount', function(){
             __productAutocomplete();
+            __tarjetaAutocomplete();
         })
+
+        __pagar(){
+            $(".mostrar").removeAttr("hidden");
+            $(".ocultar").attr("hidden", "true");
+            var parametros = {
+                "q" : self.client_id
+            }
+            $.ajax({
+                    url: baseUrl('compra/encontrartienda'),
+                    data: parametros,
+                    success: function (respuesta) {
+                        self.tienda_id = respuesta;
+                    }
+            });
+            $.ajax({
+                url: baseUrl('compra/encontrarusuario'),
+                data: parametros,
+                success: function (respuesta) {
+                    self.usuario_id = respuesta;
+                }
+            })
+        }
 
         __removeProductFromDetail(e) {
             var item = e.item,
@@ -76,6 +160,14 @@
 
             this.detail.splice(index, 1);
             __calculate();
+        }
+
+        __removeTarjetaFromDetail(e) {
+            var item = e.item,
+                index = this.detail2.indexOf(item);
+
+            this.detail2.splice(index, 1);
+            __calculate3();
         }
 
         __addProductToDetail() {
@@ -88,8 +180,7 @@
                 price: parseFloat(self.price),
                 total: parseFloat(self.price * self.quantity.value)
             });
-
-            self.product_id = 0;
+            self.product_id = 0;    
             self.product.value = '';
             self.quantity.value = '';
             self.price = '';
@@ -101,14 +192,33 @@
             }   
         }
 
+        __addCreditoToDetail() {
+                self.detail2.push({
+                id: self.tarjeta_id,
+                name: self.tarjeta.value,
+                banco: self.banco,
+                tipo: self.tipo,
+                monto: parseFloat(self.monto.value)
+            });
+            self.tarjeta_id = 0;    
+            self.tarjeta.value = '';
+            self.banco = '';
+            self.tipo = '';
+            self.monto.value = '';
+            __calculate2();                      
+        } 
+
         __save() {
-            $.post(baseUrl('invoice/save'), {
+            $.post(baseUrl('compra/guardar'), {
+                tienda_id: self.tienda_id,
+                usuario_id: self.usuario_id,
                 client_id: self.client_id,
                 total: self.total,
-                detail: self.detail
+                detail: self.detail,
+                detail2: self.detail2
             }, function(r){
                 if(r.response) { 
-                    window.location.href = baseUrl('invoice');                   
+                    window.location.href = baseUrl('');                   
                 } else {                    
                 }
             }, 'json')
@@ -122,13 +232,30 @@
             });
 
             self.total = total;
+            self.montot = total;
+        }
+
+        function __calculate2() {
+            var monto = 0;
+            self.detail2.forEach(function(e){
+                monto = e.monto;
+            });
+            self.montot -= monto;
+        }
+
+        function __calculate3() {
+            var monto = 0;
+            self.detail2.forEach(function(e){
+                monto += e.monto;
+            });
+            self.montot = self.total - monto;
         }
 
         function __productAutocomplete(){
-            var product = $("#product"),
+            var product = $("#product"),                
                 options = {
                 url: function(q) {
-                    return baseUrl('comprar/encontrarproducto?q=' + q);
+                    return baseUrl('compra/encontrarproducto?q=' + q);
                 },
                 getValue: 'pro_nombre',
                 list: {
@@ -142,6 +269,26 @@
             };
 
             product.easyAutocomplete(options);
+        }
+        function __tarjetaAutocomplete(){
+            var tarjeta = $("#tarjeta"),
+                cliente = self.client_id,
+                options = {
+                url: function(q) {
+                    return baseUrl('compra/encontrarcredito?q=' + q + '&c=' +cliente);
+                },
+                getValue: 'med_pag_tar_cred_numero',
+                list: {
+                    onClickEvent: function() {
+                        var e = tarjeta.getSelectedItemData();
+                        self.tarjeta_id = e.med_pag_tar_cred_codigo;
+                        self.banco = e.med_pag_tar_cred_banco;
+                        self.tipo = e.med_pag_tar_cred_tipo;
+                        self.update();
+                    }
+                }
+            };
+            tarjeta.easyAutocomplete(options);
         }
     </script>
 </compra>
