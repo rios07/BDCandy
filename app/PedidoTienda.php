@@ -16,4 +16,7 @@ class PedidoTienda extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'ped_tie_cantidad', 'ped_tie_fecha_emision', 'ped_tie_fecha_entrega', 'fk_tienda', 'fk_producto', 'fk_estatus'];
+
  }

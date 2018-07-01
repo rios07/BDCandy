@@ -1,5 +1,11 @@
 <compra>
     <div class="ocultar">
+    <a class="btn btn-primary" target="_blank" href="compra/catalogo" >Catálogo de productos</a>
+    <br>
+    <br>  
+    <select id="catalogo" class="form-control form-control-lg" onfocus="{__tiendas}" >
+        <option selected hidden disabled>Tienda a comprar</option>
+    </select>
     <h2 class="page-header">
                 Nueva compra
     </h2>
@@ -12,7 +18,7 @@
         </div>
         <div class="col-xs-2">
             <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1">Bs.</span>
+                <span class="input-group-addon" id="basic-addon1">BsF.</span>
                 <input class="form-control" type="text" placeholder="Precio" value="{price}" readonly />
             </div>
         </div>
@@ -124,6 +130,7 @@
         self.tienda_id;
         self.detail = [];
         self.detail2 = [];
+        self.catalogo = [];
         self.total = 0;
         self.montot = 0;
 
@@ -132,19 +139,22 @@
             __tarjetaAutocomplete();
         })
 
+        __tiendas(){
+            $.getJSON(baseUrl('compra/tiendas'), function (respuesta) {
+                    $.each(respuesta, function (clave, valor) {
+                        $("#catalogo").append('<option value="' + valor['tie_codigo'] + '">Rif: '+valor['tie_rif']+' Nombre: '+valor['tie_nombre']+'</option>');
+                    });
+                });
+            $("#catalogo").attr("onfocus", "null");
+        }
+
         __pagar(){
             $(".mostrar").removeAttr("hidden");
             $(".ocultar").attr("hidden", "true");
             var parametros = {
                 "q" : self.client_id
             }
-            $.ajax({
-                    url: baseUrl('compra/encontrartienda'),
-                    data: parametros,
-                    success: function (respuesta) {
-                        self.tienda_id = respuesta;
-                    }
-            });
+            self.tienda_id = $("#catalogo").val();
             $.ajax({
                 url: baseUrl('compra/encontrarusuario'),
                 data: parametros,

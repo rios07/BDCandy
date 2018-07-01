@@ -107,6 +107,20 @@ Route::get('compra/encontrarusuario', 'ComprawebController@encontrar');
 
 Route::post('/compra/guardar','ComprawebController@guardar');
 
+Route::get('/compra/catalogo','ComprawebController@catalogo')->name('catalogo');
+
+Route::get('/compra/tiendas','ComprawebController@tiendas');
+
+Route::get('/compra/factura','ComprawebController@factura');
+
+//Facturas en linea
+
+Route::get('/{codigo}/facturas','FacturaController')->name('facturas');
+
+Route::get('/{codigo}/facturas/detalles/productos','FacturaController@show')->where('codigo','[0-9]+')->name('facturas.show');
+
+Route::get('/{codigo}/facturas/detalles/pago','FacturaController@pagos')->where('codigo','[0-9]+')->name('facturas.pagos');
+
 //Ofertas
 
 Route::get('/ofertas', 'OfertaController')->name('ofertas');

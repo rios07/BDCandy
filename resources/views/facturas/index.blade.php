@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Productos')
+@section('title', 'Facturas')
 @section('content')
 
     <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
@@ -8,8 +8,7 @@
 
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('productos.create') }}">Nuevo Producto</a></li>  
-                @guest            
+                @guest           
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -30,43 +29,34 @@
             </ul>
     </div>
 
-    @if ($productos->isNotEmpty())
-    <table class="table table-striped" name="producto" id="producto">
+    @if ($facturas->isNotEmpty())
+    <table class="table table-striped" name="producto" id="factura">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Imagen</th>
-            <th scope="col" class="col-sm-6 text-center">Nombre</th>
-            <th scope="col" class="col">Precio</th>
-            <th scope="col" >Detalles</th>
-            <th scope="col" >Modificar</th>
-            <th scopre="col">Eliminar</th>   
+            <th scope="col" class="col-sm-5">Número de factura</th>
+            <th scope="col" class="col-sm-2">Monto total</th>
+            <th scope="col" class="col-sm-3" >Fecha de facturación</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
-        @foreach($productos as $producto)
+        @foreach($facturas as $factura)
         <tr>
-            <td scope="row"><img src="{{ asset('image/'.$producto->pro_imagen)}}" height="75" width="80" ></td>
-            <td scope="row" class="text-center">{{ $producto->pro_nombre }}</td>
-            <td scope="row">{{ $producto->pro_precio }}</td>
-            <td>
-                <a href=" {{ route('productos.show', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-info">Detalles</a>
-            </td>
-            <td>
-                <a href=" {{ route('productos.edit', ['codigo' => $producto->pro_codigo]) }} " class="btn btn-primary">Modificar</a>
-            </td>
-            <td>
-                <form action="{{ route('productos.destroy', $producto) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}               
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </td>
+            <td scope="row">{{ $factura->com_web_codigo }}</td>
+            <td scope="row">$ {{ $factura->com_web_monto }}</td>
+            <td scope="row">{{ $factura->com_fecha }}</td>
+            <td >
+                <a href=" {{ route('facturas.pagos', ['codigo' => $factura->com_web_codigo]) }} " class="btn btn-primary">Detalles de pago</a>
+            </td>            
+            <td >
+                <a href=" {{ route('facturas.show', ['codigo' => $factura->com_web_codigo]) }} " class="btn btn-info">Detalles de productos</a>
+            </td>            
         </tr>
         @endforeach
         </tbody>
     </table>
     @else
-        <p>No hay productos registrados.</p>
+        <p>No hay facturas registradas.</p>
     @endif
 @endsection
 @section ('bottom')
