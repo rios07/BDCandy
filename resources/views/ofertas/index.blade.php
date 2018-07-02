@@ -47,8 +47,8 @@
             <td scope="row">{{ $value->ofe_pro_valor }}</td>
             @foreach($ofertas as $k => $v)
             @if(($v->ofe_pro_codigo) == ($value->ofe_pro_codigo))
-            <td scope="row">{{$v->ofe_fecha_inicio}}</td>
-            <td scope="row">{{$v->ofe_fecha_final}}</td>
+                <td scope="row">{{$v->ofe_fecha_inicio}}</td>
+                <td scope="row">{{$v->ofe_fecha_final}}</td>
             @break
             @endif
             @endforeach

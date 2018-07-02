@@ -31,9 +31,47 @@ class TiendaController extends Controller
             ->join('pedido_tienda', 'producto.pro_codigo', '=', 'pedido_tienda.fk_producto')
             ->select('pedido_tienda.*','producto.pro_nombre','producto.pro_codigo')
             ->where('pedido_tienda.fk_tienda', $codigo)
+            ->orderBy('pedido_tienda.ped_tie_codigo', 'desc')
             ->get();
+        $estatus = DB::table('estatus')->get();
         $tienda = Tienda::find($codigo);
-        return view('tiendas.pedidos', compact('pedidos', 'tienda'));
+        return view('tiendas.pedidos', compact('pedidos', 'tienda', 'estatus'));
+    }
+
+    public function cambioEstatus($codigo)
+    {
+        $pedido = DB::table('producto')
+            ->join('pedido_tienda', 'producto.pro_codigo', '=', 'pedido_tienda.fk_producto')
+            ->select('pedido_tienda.*','producto.pro_nombre','producto.pro_codigo')
+            ->where('pedido_tienda.ped_tie_codigo', $codigo)
+            ->first();
+        $estatus = DB::table('estatus')->get();
+        return view('tiendas.cambioEstatus', compact('pedido','estatus'));
+    }
+
+    public function cambio($codigo)
+    {
+        $hoy = date("Y-m-d");
+        $data = request()->validate([
+            'fk_estatus' => 'required',
+        ],[
+            'fk_estatus.required' => 'El campo estatus es obligatorio',
+        ]);
+        $pedido = PedidoTienda::find($codigo);
+        if ($data['fk_estatus'] == 3){
+            $revisarInventario = DB::table('almacen')
+            ->join('inventario','almacen.alm_codigo', '=', 'inventario.fk_almacen')
+            ->where([['inventario.fk_producto', '=', $pedido->fk_producto],[ 'almacen.fk_tienda', '=', $pedido->fk_tienda]])
+            ->select('inventario.inv_cantidad')
+            ->get();
+            foreach ($revisarInventario as $key => $value) {
+                $cantidad = $value->inv_cantidad + 10000;
+            }
+            $actualizarInventario = DB::table('inventario')->join('almacen', 'inventario.fk_almacen','=','almacen.alm_codigo')->where([['inventario.fk_producto', '=', $pedido->fk_producto],[ 'almacen.fk_tienda', '=', $pedido->fk_tienda]])->update(['inv_cantidad' => $cantidad ]);
+            $pedido->update(['ped_tie_fecha_entrega' => $hoy]);
+        }
+        $pedido->update($data);
+        return redirect()->route('tiendas.pedidos', ['codigo' => $pedido->fk_tienda]);
     }
 
     public function create()

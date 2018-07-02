@@ -9,12 +9,6 @@
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 13%; margin-right: 5%;">
-                    <form align="right" class="form-inline  my-100 my-lg-0">
-                        <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-success" type="submit">Buscar</button>
-                    </form>
-                </li> 
                 @guest           
                 @else
                     <li class="nav-item dropdown">

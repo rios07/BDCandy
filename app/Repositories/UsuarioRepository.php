@@ -2,17 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Credito;
+use App\ClienteNatural;
 
 class UsuarioRepository {
     private $model;
     
     public function __construct(){
-        $this->model = new Credito();
+        $this->model = new ClienteNatural();
     }
 
-    public function findByName($n,$q)
-    {    	
-        return $this->model->where('fk_cliente_natural','=',$n)->where(function ($query){$query->where('med_pag_tar_cred_numero','like','%$q%');})->get();
+    public function findByName($q) {
+        return $this->model->where('cli_nat_rif', 'like', "%$q%")->get();
     }
 }

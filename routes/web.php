@@ -93,6 +93,12 @@ Route::put('/tiendas/detalles/{tienda}', 'TiendaController@update')->name('tiend
 
 Route::delete('/tiendas/detalles/{tienda}', 'TiendaController@destroy')->name('tiendas.destroy');
 
+Route::get('/tiendas/detalles/{codigo}/pedidos', 'TiendaController@pedidos')->name('tiendas.pedidos');
+
+Route::get('/tiendas/cambiar/pedido/{codigo}','TiendaController@cambioEstatus')->name('tiendas.cambioEstatus');
+
+Route::put('/tiendas/detalles/pedidos/{codigo}', 'TiendaController@cambio')->name('tiendas.cambio');
+
 //Compra en linea
 
 Route::get('/compra', 'ComprawebController@add')->name('comprasweb.add');
@@ -121,6 +127,28 @@ Route::get('/{codigo}/facturas/detalles/productos','FacturaController@show')->wh
 
 Route::get('/{codigo}/facturas/detalles/pago','FacturaController@pagos')->where('codigo','[0-9]+')->name('facturas.pagos');
 
+//Compra en tienda
+
+Route::get('/compratienda/nuevacompra', 'CompratiendaController@agregar')->name('comprastienda.compra');
+
+Route::get('/compratienda/catalogo','CompratiendaController@catalogo')->name('comprastienda.catalogo');
+
+Route::get('/compratienda/encontrarcredito', 'CompratiendaController@findCredito');
+
+Route::get('/compratienda/encontrardebito', 'CompratiendaController@findDebito');
+
+Route::get('/compratienda/encontrarcheque', 'CompratiendaController@findCheque');
+
+Route::get('compratienda/encontrartienda', 'CompratiendaController@findTienda');
+
+Route::get('/compratienda/encontrarcliente', 'CompratiendaController@findCliente');
+
+Route::get('/compratienda/encontrarproducto', 'CompratiendaController@findProduct');
+
+Route::post('/compratienda/facturar','CompratiendaController@facturar');
+
+Route::get('/compratienda/{codigo}', 'CompratiendaController')->name('comprastienda');
+
 //Ofertas
 
 Route::get('/ofertas', 'OfertaController')->name('ofertas');
@@ -136,8 +164,6 @@ Route::put('/ofertas/{ofertapro}', 'OfertaController@update')->name('ofertas.upd
 Route::delete('/ofertas/{codigo}', 'OfertaController@destroy')->name('ofertas.destroy');
 
 //Pedidos de tiendas
-
-Route::get('/tiendas/detalles/{codigo}/pedidos', 'TiendaController@pedidos')->name('tiendas.pedidos');
 
 Route::get('/pedidos', 'PedidoController')->name('pedidos');
 

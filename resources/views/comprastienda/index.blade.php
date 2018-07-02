@@ -1,15 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Lista de pedidos')
+@section('title', 'Compra en tienda')
 @section('content')
 
     <div class="jumbotron text-center" style="background-image: url('http://localhost/BDCandy/public/image/fondo2.jpg'); background-repeat: repeat-x; background-position: center; background-size: 40%;">
-        <h1 class="">{{$tienda->tie_rif}} - {{$tienda->tie_nombre}} </h1>
+        <h1 class=""> {{$title}} </h1>
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
-                <li class="nav-item">  
-                    <a class="nav-link" href=" {{ route('tiendas.show',['codigo' => $tienda->tie_codigo]) }} "> <b>Regresar a la tienda</b></a> 
-                </li>
+                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
                 @guest           
                 @else
                     <li class="nav-item dropdown">
@@ -30,43 +28,38 @@
                 @endguest
             </ul>
     </div>
+    <a class="btn btn-primary btn-lg" href="{{ route('comprastienda.compra') }}">Nueva compra en tienda</a>
 
-    @if ($pedidos->isNotEmpty())
-    <table class="table table-striped" name="producto" id="pedido">
+    @if ($facturas->isNotEmpty())
+    <table class="table table-striped" name="producto" id="factura">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Número de pedido</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Fecha de emisión</th>
-            <th scope="col">Fecha de entregado</th>
-            <th scope="col">Estatus</th>
-            <th scope="col"></th>
+            <th scope="col" class="col-sm-5">Número de factura</th>
+            <th scope="col" class="col-sm-2">Monto total</th>
+            <th scope="col" class="col-sm-2" >Fecha de facturación</th>
+            <th scope="col">Puntos ganados</th>
+            <th scope="col"> </th>
         </tr>
         </thead>
         <tbody>
-        @foreach($pedidos as $pedido)
+        @foreach($facturas as $factura)
         <tr>
-            <td scope="row">{{ $pedido->ped_tie_codigo}}</td>
-            <td scope="row">{{ $pedido->pro_nombre }}</td>
-            <td scope="row">{{ $pedido->ped_tie_cantidad}}</td>
-            <td scope="row">{{ $pedido->ped_tie_fecha_emision }}</td>
-            <td scope="row">{{ $pedido->ped_tie_fecha_entrega }}</td>
-            @foreach($estatus as $estatu)
-                @if($estatu->est_codigo == $pedido->fk_estatus)
-                    <td scope="row">{{ $estatu->est_tipo}}</td>
-                @break
-                @endif
-            @endforeach
-            <td scope="row">
-                <a href=" {{ route('tiendas.cambioEstatus', ['codigo' => $pedido->ped_tie_codigo])}} " class="btn btn-primary">Cambiar estatus</a>                   
-            </td>
+            <td scope="row">{{ $factura->com_tie_codigo }}</td>
+            <td scope="row">$ {{ $factura->com_tie_monto }}</td>
+            <td scope="row">{{ $factura->com_tie_fecha }}</td>
+            <td scope="row">{{ $factura->com_tie_punto_ganado}}</td>
+            <td >
+                <a href=" {{ route('facturas.pagos', ['codigo' => $factura->com_tie_codigo]) }} " class="btn btn-primary">Detalles de pago</a>
+            </td>            
+            <td >
+                <a href=" {{ route('facturas.show', ['codigo' => $factura->com_tie_codigo]) }} " class="btn btn-info">Detalles de productos</a>
+            </td>            
         </tr>
         @endforeach
         </tbody>
     </table>
     @else
-        <p>No hay tiendas registrados.</p>
+        <p>No hay facturas registradas.</p>
     @endif
 @endsection
 @section ('bottom')

@@ -3,43 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\ProductoRepository;
-use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
-use App\Credito;
-use App\CompraWeb;
 use App\ProductoCompra;
 use App\Pago;
 use App\Producto;
-use App\Tienda;
+use App\CompraTienda;
+use App\Credito;
+use App\Debito;
+use App\Cheque;
 use App\Orden;
-use App\PedidoTienda;
+use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
+use App\Repositories\UsuarioRepository;
+use App\Repositories\ProductoRepository;
 
-class ComprawebController extends Controller
+class CompratiendaController extends Controller
 {
-    private $_productoRepo;
+	private $_usuarioRepo;
+	private $_productoRepo;
 
-    public function __CONSTRUCT(ProductoRepository $productoRepo)
+    public function __CONSTRUCT(UsuarioRepository $usuarioRepo, ProductoRepository $productoRepo)
     {
+        $this->_usuarioRepo = $usuarioRepo;
         $this->_productoRepo = $productoRepo;
     }
 
-    public function tiendas()
+    public function __invoke($codigo)
     {
-        $tiendas = Tienda::orderBy('tie_codigo', 'asc')->get()->toJson();
-        return $tiendas;
+        $tienda = DB::table('empleado')->where('emp_codigo','=', $codigo)->first();
+        $facturas = CompraTienda::where('fk_tienda', $tienda->fk_tienda)->orderBy('com_tie_codigo','desc')->get();
+        $title = "Compra en tienda";
+        return view('comprastienda.index', compact('facturas', 'title'));
+    }
+
+    public function agregar()
+    {
+    	return view('comprastienda.compra');
     }
 
     public function catalogo()
     {
         $productos = Producto::orderBy('pro_codigo', 'asc')->get();
         $title = "Lista de productos";
-        return view('comprasweb.catalogo', compact('productos', 'title'));
+        return view('comprastienda.catalogo', compact('productos', 'title'));
     }
 
-	public function add()
+    public function findCliente(Request $req)
     {
-        return view('comprasweb.compra');
+        return $this->_usuarioRepo->findByName($req->input('q'));
     }
 
     public function findProduct(Request $req)
@@ -50,51 +60,41 @@ class ComprawebController extends Controller
     public function findCredito(Request $r)
     {
         $q=$r->input('q');
-        $clienteNatural = DB::table('usuario')->where('usu_nombre','=',$r->input('c'))->where(function ($query){$query->whereNotNull('fk_cliente_natural');})->select('fk_cliente_natural')->first();        
-        if(isset($clienteNatural))
-        { 
-            $tarjetas = Credito::where('fk_cliente_natural','=',$clienteNatural->fk_cliente_natural)->get();
-            return $tarjetas;
-        }
-        else
-        {
-            $clienteJuridico = DB::table('usuario')->where('usu_nombre','=',$r->input('c'))->where(function ($query){$query->whereNotNull('fk_cliente_juridico');})->select('fk_cliente_juridico')->first();
-            $tarjetas = Credito::where('fk_cliente_juridico','=',$clienteJuridico->fk_cliente_juridico)->get();
-            return $tarjetas;
-        }
+        $tarjetas = Credito::where('fk_cliente_natural','=',$r->input('c'))->get();
+        return $tarjetas;
+    }
+
+    public function findDebito(Request $r)
+    {
+        $q=$r->input('q');
+        $tarjetas = Debito::where('fk_cliente_natural','=',$r->input('c'))->get();
+        return $tarjetas;
+    }
+
+    public function findCheque(Request $r)
+    {
+        $q=$r->input('q');
+        $tarjetas = Cheque::where('fk_cliente_natural','=',$r->input('c'))->get();
+        return $tarjetas;
     }
 
     public function findTienda(Request $r)
     {
-        $clienteNatural = DB::table('usuario')->where('usu_nombre','=',$r->input('q'))->where(function ($query){$query->whereNotNull('fk_cliente_natural');})->select('fk_cliente_natural')->first();        
-        if(isset($clienteNatural))
-        {   
-            $tienda = DB::table('cliente_natural')->where('cli_nat_rif','=',$clienteNatural->fk_cliente_natural)->select('fk_tienda')->first();
+        $empleado = DB::table('usuario')->where('usu_nombre','=',$r->input('q'))->where(function ($query){$query->whereNotNull('fk_empleado');})->select('fk_empleado')->first();         
+            $tienda = DB::table('empleado')->where('emp_codigo','=',$empleado->fk_empleado)->select('fk_tienda')->first();
             return $tienda->fk_tienda;
-        }
-        else
-        {
-            $clienteJuridico = DB::table('usuario')->where('usu_nombre','=',$r->input('q'))->where(function ($query){$query->whereNotNull('fk_cliente_juridico');})->select('fk_cliente_juridico')->first();
-            $tienda = DB::table('cliente_juridico')->where('cli_jur_rif','=',$clienteJuridico->fk_cliente_juridico)->select('fk_tienda')->first();
-            return $tienda->fk_tienda;
-        }
     }
 
-    public function encontrar(Request $r)
-    {
-        $usuario = DB::table('usuario')->where('usu_nombre','=',$r->input('q'))->select('usu_codigo')->first();
-        return $usuario->usu_codigo;
-    }
-
-    public function guardar(Request $r)
+    public function facturar(Request $r)
     {
         $hoy = date("Y-m-d");
         $data = (object)[
             'fk_tienda' => $r->input('tienda_id'),
-            'fk_usuario' => $r->input('usuario_id'),
-            'fk_estatus' => 1,
-            'com_fecha' => $hoy,
-            'com_web_monto' => $r->input('total'),
+            'fk_cliente_natural' => $r->input('client_id'),
+            'com_tie_fecha' => $hoy,
+            'fk_punto' => 10,
+            'com_tie_punto_ganado' => $r->input('puntos'),
+            'com_tie_monto' => $r->input('total'),
             'detail' => [],
             'detail2' => []
         ];
@@ -109,8 +109,9 @@ class ComprawebController extends Controller
         foreach ($r->input('detail2') as $d) 
         {
             $data->detail2[] = (object)[
-                'fk_medio_pago_tarjeta_credito' => $d['id'],
+                'fk_medio_pago' => $d['id'],
                 'pag_fecha' => $hoy,
+                'metodo' => $d['metodo'],
                 'pag_monto' => $d['monto']
             ];
         }
@@ -119,16 +120,17 @@ class ComprawebController extends Controller
             'response' => true
         ];
 
-        $factura = new CompraWeb;
-        $factura->com_web_monto = $data->com_web_monto;
-        $factura->com_fecha = $data->com_fecha;
+        $factura = new CompraTienda;
+        $factura->com_tie_monto = $data->com_tie_monto;
+        $factura->com_tie_fecha = $data->com_tie_fecha;
         $factura->fk_tienda = $data->fk_tienda;
-        $factura->fk_estatus = $data->fk_estatus;
-        $factura->fk_usuario = $data->fk_usuario;
+        $factura->fk_cliente_natural = $data->fk_cliente_natural;
+        $factura->fk_punto = $data->fk_punto;
+        $factura->com_tie_punto_ganado = $data->com_tie_punto_ganado;
         $factura->save();
-        $codigo = CompraWeb::orderBy('com_web_codigo','desc')->first();
+        $codigo = CompraTienda::orderBy('com_tie_codigo','desc')->first();
         $orden = new Orden;
-        $orden->fk_compra_web = $codigo->com_web_codigo;
+        $orden->fk_compra_tienda = $codigo->com_tie_codigo;
         $orden->save();
         foreach ($data->detail as $d) 
         {
@@ -160,7 +162,7 @@ class ComprawebController extends Controller
             ->join('almacen','almacen.alm_codigo', '=', 'inventario.fk_almacen')
             ->where([['inventario.fk_producto', '=', $obj->fk_producto],[ 'almacen.fk_tienda', '=', $codigo->fk_tienda]])
             ->update(['inv_cantidad' => $cantidad]);
-            $obj->fk_compra_web = $codigo->com_web_codigo;
+            $obj->fk_compra_tienda = $codigo->com_tie_codigo;
             $obj->save();            
         }        
         foreach ($data->detail2 as $d) 
@@ -168,8 +170,18 @@ class ComprawebController extends Controller
             $obj2 = new Pago;
             $obj2->pag_monto = $d->pag_monto;
             $obj2->pag_fecha = $d->pag_fecha;
-            $obj2->fk_medio_pago_tarjeta_credito = $d->fk_medio_pago_tarjeta_credito;
-            $obj2->fk_compra_web = $codigo->com_web_codigo; 
+            switch ($d->metodo) {
+    			case "Cheque":
+    				$obj2->fk_medio_pago_cheque = $d->fk_medio_pago;
+        			break;
+        		case "Tarjeta de credito":
+        			$obj2->fk_medio_pago_tarjeta_credito = $d->fk_medio_pago;
+        			break;
+        		case "Tarjeta de debito":
+        			$obj2->fk_medio_pago_tarjeta_debito = $d->fk_medio_pago;
+        			break;
+			}            	
+            $obj2->fk_compra_tienda = $codigo->com_tie_codigo; 
             $obj2->save();
         }        
         return json_encode($return);

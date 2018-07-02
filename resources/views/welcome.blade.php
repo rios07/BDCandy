@@ -9,8 +9,7 @@
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href="{{ route('tiendas') }}"><b>Tiendas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ url('/Clientes') }}"><b>Clientes</b> </a></li>
-                <li class="nav-item">  <a class="nav-link" href="{{ route('productos') }}"><b>Productos</b> </a></li>
-                <li class="nav-item">  <a class="nav-link" href="#"><b>Compra en tienda</b> </a></li>
+                <li class="nav-item">  <a class="nav-link" href="{{ route('productos') }}"><b>Productos</b> </a></li>                
                 <li class="nav-item">  <a class="nav-link" href="{{ route('comprasweb.add')}}"><b>Comprar</b> </a></li>                
                 <li class="nav-item">  <a class="nav-link" href="{{ route('ofertas')}}"><b>Ofertas</b></a></li>
                 <li class="nav-item">  <a class="nav-link" href="{{ url('/puntos')}}"><b>Puntos</b></a></li>
@@ -20,6 +19,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>                    
                 @else
+                    <li class="nav-item">  <a class="nav-link" href="{{ route('comprastienda',['codigo' => Auth::user()->fk_empleado]) }}"><b>Compra en tienda</b> </a></li>
                     <li class="nav-item">  <a class="nav-link" href="{{ route('facturas', [ 'codigo' => Auth::user()->usu_codigo]) }}"><b>Facturas</b> </a></li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
