@@ -125,7 +125,7 @@ class ReportesController extends Controller
    		return view ('Reporte22J',compact('rol'));
 	
    }
-     public function reporte22N()   {
+    public function reporte22N()   {
    		$rol=DB::SELECT("SELECT cn.cli_nat_ci, cn.clie_nat_primer_nombre,
 						(select case when sum(cw.com_web_monto) is null then 0 else sum(com_web_monto) end
 						 From public.compra_web cw, public.usuario u 
@@ -151,4 +151,33 @@ class ReportesController extends Controller
    		return view ('Reporte22N',compact('rol'));
 	
    }
+    public function reporte26()   {
+   		$rol=DB::SELECT("SELECT med_pag_tar_cred_tipo, count(med_pag_tar_cred_tipo)
+						from public.medio_pago_tarjeta_credito
+						group by med_pag_tar_cred_tipo
+						order by count(med_pag_tar_cred_tipo) DESC;");
+
+   		return view ('Reporte26',compact('rol'));
+	
+   }
+   	public function reporte28()   {
+		$rol=DB::SELECT("SELECT cli_nat_ci,clie_nat_primer_nombre,cli_nat_primer_apellido, com_tie_punto_ganado
+						from public.cliente_natural,public.compra_tienda
+						where cli_nat_rif=fk_cliente_natural
+						group by cli_nat_ci,clie_nat_primer_nombre,cli_nat_primer_apellido, com_tie_punto_ganado
+						order by  com_tie_punto_ganado DESC limit 10;");
+
+		return view ('Reporte28',compact('rol'));
+	
+   	}
+
+    public function reporte25()   {
+   		$rol=DB::SELECT("SELECT count(fk_medio_pago_tarjeta_credito) as credito,count(fk_medio_pago_tarjeta_debito) as debito,
+						count(fk_medio_pago_cheque) as cheque,fk_compra_tienda
+						from public.compra_tienda ,public.pago
+						where fk_compra_tienda=com_tie_codigo
+						group by fk_compra_tienda;");
+   		return view ('Reporte25',compact('rol'));
+   	}
+
 }

@@ -1,0 +1,69 @@
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="jumbotron text-center">
+        <h1 class=""> Reportes </h1>
+        <nav class="navbar navbar-light bg-light justify-content-between">
+
+            <ul class="nav nav-pills">
+                <li class="nav-item">  <a class="nav-link" href="{{ url('/') }}"> <b>CandyUcab</b>      </a>     </li>
+               
+                @guest                    
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+
+            </ul>
+          </nav>
+    </div>
+
+ 
+        <div class="row">
+         
+            <table class="table" name="ClienteJ" id="ClienteJ">
+                <thead class="thead-dark">
+                    <tr>
+                        
+                        <th scope="col"> cedula   </th>
+                        <th scope="col"> nombre  </th>
+                        <th scope="col"> web </th>
+                        <th scope="col"> tienda </th>
+                        <th scope="col"> total ingresos </th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach($rol as $roles)
+                        <tr>
+                           <td>{{ $roles->cli_nat_ci  }}</td> 
+                           <td>{{ $roles->clie_nat_primer_nombre  }}</td> 
+                           <td>{{ $roles->web }}</td> 
+                           <td>{{ $roles->tienda }}</td> 
+                           <td>{{ $roles->total_ingresos }}</td> 
+                         
+
+
+
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div> 
+@endsection
+@section('scripts')
+@endsection

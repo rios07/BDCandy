@@ -7,20 +7,20 @@
         
 
         <div class="form-group row">
+
             <div class="col-md-3">
                 <a href="{{ url('/reportes/reporte9') }}" class="btn btn-primary btn-lg active" aria-pressed="true">ingresos vs egresos </a>
-                
+              
+                 
             </div>
             <div class="col-md-3">
-                <a href="{{ url('/reportes/reporte10') }}" class="btn btn-primary btn-lg active" aria-pressed="true"> Reporte de asistencia </a>
+               <a href="{{ url('/reportes/reporte10') }}" class="btn btn-primary btn-lg active" aria-pressed="true"> Reporte de asistencia </a>
             </div>
             <div class="col-md-3">
                 <a href="{{ url('/reportes/reporte14J') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 5 mejores clientes J</a>
-
             </div>
             <div class="col-md-3">
                 <a href="{{ url('/reportes/reporte14N') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 5 mejores clientes N</a>
-
             </div>  
         </div>
             
@@ -48,19 +48,35 @@
         </div>
         <div class="form-group row">
             
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <a href="{{ url('/reportes/reporte21') }}" class="btn btn-primary btn-lg active" aria-pressed="true">Ingrediente más utilizado en los productos  </a>
                 
             </div>
             
-            <div class="col-md-8">
-                <a href="{{ url('/reportes/reporte22J') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 10 mejores clientes en base a la suma de compras en línea y las compras físicas</a>
+            <div class="col-md-5">
+                <a href="{{ url('/reportes/reporte22J') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 10 mejores clientes en basea la suma de c.línea y las c.física</a>
+              
+            </div>
+
+             <div class="col-md-5">
+                <a href="{{ url('/reportes/reporte22N') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 10 mejores clientes en base a la suma de c.línea y las c.físicas</a>
               
             </div>
         </div>
-            <div class="col-md-8">
-                <a href="{{ url('/reportes/reporte22N') }}" class="btn btn-primary btn-lg active" aria-pressed="true">los 10 mejores clientes en base a la suma de compras en línea y las compras físicas</a>
-              
+            
+        <div class="form-group row">
+            <div class="col-md-4">
+                <a href="{{ url('/reportes/reporte26') }}" class="btn btn-primary btn-lg active" aria-pressed="true">tarjetas mas registradas por cliente</a>
+
             </div>
+            <div class="col-md-4">
+                <a href="{{ url('/reportes/reporte25') }}" class="btn btn-primary btn-lg active" aria-pressed="true">tipo pago mas usado</a>
+
+            </div>
+            <div class="col-md-4">
+                <a href="{{ url('/reportes/reporte28')}}" class="btn btn-primary btn-lg active" aria-pressed="true">clientes con mas puntos</a>
+
+            </div>
+        </div>
             
     </div>

@@ -114,4 +114,11 @@ Route::get('/reportes/reporte22J','ReportesController@reporte22J');
 Route::get('/reportes/reporte22N','ReportesController@reporte22N');
 
 
+Route::get('/reportes/reporte26','ReportesController@reporte26');
+
+Route::get('/reportes/reporte25','ReportesController@reporte25');
+
+Route::get('/reportes/reporte28','ReportesController@reporte28');
+
+
 Auth::routes();
