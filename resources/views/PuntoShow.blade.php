@@ -9,16 +9,10 @@
             <ul class="nav nav-pills">
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/') }}"><b>CandyUcab</b></a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/Puntos/create') }}">Nuevo Punto</a></li>  
-                <li class="nav-item btn-nav-input" style="margin-left: 10%;">
-                    <form align="right" class="form-inline  my-100 my-lg-0">
-                        <input  class="form-control " type="search" placeholder="Buscar" aria-label="search">
-                        <button class="btn btn-success" type="submit">Buscar</button>
-                    </form>
-                </li>  
                 @guest                   
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle-lg" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->usu_nombre }} <span class="caret"></span>
                         </a>
 

@@ -47,6 +47,34 @@ Route::post('Clientes/ClienteN/ClienteNaturalModificar/{cli_nat_rif}', ['as' => 
 
 Route::delete('Clientes/ClienteN/{ClientesNaturales}', 'ClienteNaturalController@destroy')->name('ClientesNatural.destroy');
 
+//Usuarios
+
+Route::get('usuarios', 'UsuarioController')->name('usuarios');
+
+Route::get('/usuarios/detalles/{codigo}','UsuarioController@show')->where('codigo','[0-9]+')->name('usuarios.show');
+
+Route::get('/usuarios/editar/{codigo}', 'UsuarioController@rol')->name('usuarios.rol');
+
+Route::put('/usuarios/editar/{usuario}', 'UsuarioController@update')->name('usuarios.update');
+
+Route::delete('/usuarios/{usuario}', 'UsuarioController@destroy')->name('usuarios.destroy');
+
+//Roles
+
+Route::delete('/roles/eliminar/{codigo}', 'RolController@destroy')->name('roles.destroy');
+
+Route::get('/roles/detalles/{codigo}','RolController@show')->where('codigo','[0-9]+')->name('roles.show');
+
+Route::get('/roles/detalles/{codigo}/editar', 'RolController@edit')->name('roles.edit');
+
+Route::put('/roles/detalles/{rol}', 'RolController@update')->name('roles.update');
+
+Route::get('/roles', 'RolController')->name('roles');	
+
+Route::get('/roles/nuevo', 'RolController@create')->name('roles.create');
+
+Route::post('/roles','RolController@store');
+
 //Puntos
 
 Route::resource('/puntos','PuntosController');

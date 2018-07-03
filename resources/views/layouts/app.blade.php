@@ -14,7 +14,7 @@
     </head>
 
     <body >
-        <div class="container">
+        <div class="container" style="width: 1400px;">
             @yield('content')
         </div>
 

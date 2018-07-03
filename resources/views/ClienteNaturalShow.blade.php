@@ -8,7 +8,25 @@
             <ul class="nav nav-pills">
                 <li class="nav-item">  <a class="nav-link" href="{{url('/')}}"> <b>CandyUcab</b></a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ url('/Clientes/ClienteN/create') }}">Nuevo Cliente</a></li>  
-            </ul>       
+                @guest            
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle-lg" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>      
         </nav>
     </div>
 

@@ -14,8 +14,9 @@ class TiendaController extends Controller
     public function __invoke()
     {
     	$tiendas = Tienda::orderBy('tie_codigo', 'asc')->get();
+        $lugares = Lugar::all();
     	$title = "Lista de tiendas";
-    	return view('tiendas.index', compact('tiendas', 'title'));
+    	return view('tiendas.index', compact('tiendas', 'title', 'lugares'));
     }
 
     public function show($codigo)

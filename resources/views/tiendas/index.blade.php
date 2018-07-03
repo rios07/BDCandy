@@ -7,12 +7,12 @@
         <nav class="navbar navbar-light bg-light justify-content-between">
 
             <ul class="nav nav-pills">
-                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
+                @can('create compra_tienda')
+                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>                  
                 @guest           
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle-lg" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->usu_nombre }} <span class="caret"></span>
                         </a>
 
@@ -35,7 +35,119 @@
         <thead class="thead-dark">
         <tr>
             <th scope="col" class="col-sm-3">Rif</th>
-            <th scope="col" class="col-sm-6">Nombre</th>
+            <th scope="col" class="col-sm-4">Nombre</th>
+            <th scope="col" class="col-sm-2">Ubicación (Parroquia)</th>
+            <th scope="col" >Detalles</th> 
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($tiendas as $tienda)
+        <tr>
+            <td scope="row">{{ $tienda->tie_rif }}</td>
+            <td scope="row">{{ $tienda->tie_nombre }}</td>
+            @foreach($lugares as $lugar)
+                @if($lugar->lug_codigo==$tienda->fk_lugar)
+                    <td scope="row">{{$lugar->lug_nombre}}</td>
+                    @break
+                @endif
+            @endforeach
+            <td>
+                <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+    @else
+        <p>No hay tiendas registrados.</p>
+    @endif
+                @endcan
+                @can('alter tienda')
+                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>                  
+                @guest           
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle-lg" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+    </div>
+
+    @if ($tiendas->isNotEmpty())
+    <table class="table table-striped" name="producto" id="tienda">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="col-sm-3">Rif</th>
+            <th scope="col" class="col-sm-4">Nombre</th>
+            <th scope="col" class="col-sm-2">Ubicación (Parroquia)</th>
+            <th scope="col" >Detalles</th> 
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($tiendas as $tienda)
+        <tr>
+            <td scope="row">{{ $tienda->tie_rif }}</td>
+            <td scope="row">{{ $tienda->tie_nombre }}</td>
+            @foreach($lugares as $lugar)
+                @if($lugar->lug_codigo==$tienda->fk_lugar)
+                    <td scope="row">{{$lugar->lug_nombre}}</td>
+                    @break
+                @endif
+            @endforeach
+            <td>
+                <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
+            </td>
+        </tr>
+        @endforeach
+        </tbody>
+    </table>
+    @else
+        <p>No hay tiendas registrados.</p>
+    @endif
+                @endcan
+                @can('total')
+                <li class="nav-item">  <a class="nav-link" href=" {{ url('/') }} "> <b>CandyUcab</b>   </a>     </li>                
+                <li class="nav-item"> <a class="nav-link" href="{{ route('tiendas.create') }}">Nueva Tienda</a></li>  
+                @guest           
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle-lg" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->usu_nombre }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>                    
+                @endguest
+            </ul>
+    </div>
+
+    @if ($tiendas->isNotEmpty())
+    <table class="table table-striped" name="producto" id="tienda">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="col-sm-3">Rif</th>
+            <th scope="col" class="col-sm-4">Nombre</th>
+            <th scope="col" class="col-sm-2">Ubicación (Parroquia)</th>
             <th scope="col" >Detalles</th>
             <th scope="col" >Modificar</th>
             <th scopre="col">Eliminar</th>   
@@ -46,7 +158,13 @@
         <tr>
             <td scope="row">{{ $tienda->tie_rif }}</td>
             <td scope="row">{{ $tienda->tie_nombre }}</td>
-            <td >
+            @foreach($lugares as $lugar)
+                @if($lugar->lug_codigo==$tienda->fk_lugar)
+                    <td scope="row">{{$lugar->lug_nombre}}</td>
+                    @break
+                @endif
+            @endforeach
+            <td>
                 <a href=" {{ route('tiendas.show', ['codigo' => $tienda->tie_codigo]) }} " class="btn btn-info">Detalles</a>
             </td>
             <td >
@@ -66,6 +184,7 @@
     @else
         <p>No hay tiendas registrados.</p>
     @endif
+    @endcan
 @endsection
 @section ('bottom')
 @endsection
