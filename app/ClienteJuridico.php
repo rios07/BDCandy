@@ -7,80 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class ClienteJuridico extends Model
 {
     //
+      public $incrementing = false;
+     public $autoincrement = false;
+    public $timestamps = false;
 
-    private $rif;
-	private $denominacionFiscal;
-	private $paginaWeb;
-	private $capitalDisponible;
-	private $contacto;
-	private $telefono;
-	private $correo;
+	protected $table = 'cliente_juridico';
+	protected $primaryKey = 'cli_jur_rif';
+	private $cli_jur_denominacion_fiscal;
+	private $cli_jur_pagina_web;
+	private $cli_jur_capital_disponible;
+	private $cli_jur_correo_electronico;
+	private $cli_jur_razon_social;
 
-	public function __construct($rif, $denominacionFiscal, $paginaWeb,$capitalDisponible,$contacto,$correo,$telefono){
-		$this->rif = $rif;
-		$this->denominacionFiscal = $denominacionFiscal;
-		$this->paginaWeb = $paginaWeb;
-		$this->capitalDisponible = $capitalDisponible;
-		$this->contacto = $contacto;
-		$this->correo = $correo;
-		$this->telefono=$telefono;
+	private $fk_lugar;
+
+	public function Debito(){
+		return $this->hasMany('App\Debito','fk_cliente_juridico');//local key rif en esta id
+	}
+	public function Credito(){
+		return $this->hasMany('App\Credito','fk_cliente_juridico');
+
+	}
+	public function Cheque(){
+		return $this->hasMany('App\Cheque','fk_cliente_juridico');
+
 	}
 
-	public function getRif(){
-		return $this->rif;
-	}
-
-	public function setRif($rif){
-		 $this->rif = $rif;
-	}
-
-	public function getDenominacionFiscal(){
-		return $this->denominacionFiscal;
-	}
-
-	public function setDenominacionFiscal($denominacionFiscal){
-		$this->denominacionFiscal = $denominacionFiscal;
-		
-	}
-
-	public function getPaginaWeb(){
-		return $this->paginaWeb;
-	}
-
-	public function setPaginaWeb($paginaWeb){
-		 $this->paginaWeb = $paginaWeb;
-	}
-
-	public function getCapitalDisponible(){
-		return $this->capitalDisponible;
-	}
-
-	public function setCapitalDisponible($capitalDisponible){
-		 $this->capitalDisponible = $capitalDisponible;
-	}
-
-	public function getContacto(){
-		return $this->contacto;
-	}
-
-	public function setContacto($contacto){
-		 $this->contacto = $contacto;
-	}
-
-	public function getCorreo(){
-		return $this->correo;
-	}
-
-	public function setCorreo($correo){
-		 $this->correo = $correo;
-	}
-
-	public function getTelefono(){
-		return $this->telefono;
-	}
-
-	public function setTelefono($telefono){
-		 $this->telefono = $telefono;
-	}
- 
 }

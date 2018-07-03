@@ -9,8 +9,9 @@
     	    <p>Relleno: <strong>{{$producto->pro_relleno}}</strong></p>
             <p>Color: {{$producto->pro_color}} </p>
             <p>Tipo de producto: {{$tipo_producto->tip_pro_nombre}}</p>
+            <p>Precio: Bs. {{$producto->pro_precio}}</p>
     	    <p>
-    	    	<a href="{{ route('productos') }}">Regresar al listado de usuarios</a>
+    	    	<a href="{{ route('productos') }}">Regresar al listado de productos</a>
     	    </p>
         </div>
     </div>

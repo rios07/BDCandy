@@ -50,9 +50,9 @@
                 <div class="form-group">
                     <label for="tipo">Tipo de producto:</label>
                     @if ($tipo_productos->isNotEmpty())
-                        <select class="form-control" name="pro_tipo_producto" id="tipo">
+                        <select class="form-control form-control-lg" name="pro_tipo_producto" id="tipo">
                             @foreach($tipo_productos as $tipo_producto)
-                            @if ($tipo_producto->tip_pro_codigo == $producto->pro_tipo_producto)
+                            @if ($tipo_producto->tip_pro_codigo == $producto->fk_tipo_producto)
                                 <option selected value="{{ $tipo_producto->tip_pro_codigo }}">{{ $tipo_producto->tip_pro_nombre }}</option>
                             @else
                                 <option value="{{ $tipo_producto->tip_pro_codigo }}">{{ $tipo_producto->tip_pro_nombre }}</option>
@@ -65,6 +65,12 @@
                         </select>
                     @endif
                 </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" class="form-control" name="pro_precio" id="precio" placeholder="Precio del producto" min="1" value="{{ old('pro_precio', $producto->pro_precio)}}">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Actualizar producto</button>                
             </form>
             <a href="{{ route('productos') }}" class="btn btn-link">Regresar al listado de productos</a>

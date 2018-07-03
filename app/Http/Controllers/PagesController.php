@@ -19,8 +19,6 @@ class PagesController extends Controller
     		],
 
     	];
-    	    	//dd($mensajes);
-
 	    return view('welcome',['mensajes' => $mensajes,
 	        ]);
 	}
@@ -30,16 +28,19 @@ class PagesController extends Controller
             ['id'=>1,
              'contenido'=>'Clientes Naturales',
              'imagen'=>'image\natural.jpg',
-             'direccion'=>'/Clientes/ClientesNaturales'
+             'direccion'=>'/Clientes/ClienteN'
             ],
             ['id'=>2,
              'contenido'=>'Clientes Juridicos',
              'imagen'=>'image\juridico.jpg',
-             'direccion'=>'/Clientes/ClientesJuridicos'
+             'direccion'=>'/Clientes/ClienteJ'
             ],
         ];
         return view('clientes',['clientes' => $clientes,
             ]);
 
     } 
+    Public function about(){
+        return view ('about');
+    }
 }

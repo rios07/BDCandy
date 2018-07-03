@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('productos') }}">
+            <form method="POST" action="{{ url('productos') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label for="tipo">Tipo de producto:</label>
                     @if ($tipo_productos->isNotEmpty())
-                        <select class="form-control" name="tipo" id="tipo">
+                        <select class="form-control form-control-lg" name="tipo" id="tipo">
                                 <option value="" selected disabled hidden>Elige el tipo de producto</option>
                             @foreach($tipo_productos as $tipo_producto)
                                 <option value="{{$tipo_producto->tip_pro_codigo}}">{{$tipo_producto->tip_pro_nombre}}</option>
@@ -60,6 +60,16 @@
                             <option>No hay tipos de productos.</option>
                         </select>
                     @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="number" class="form-control" name="precio" id="precio" placeholder="Precio del producto" min="1" value="{{ old('precio') }}">
+                </div>
+
+                <div class="form-group">
+                    <label for="imagen">Imagen del producto:</label>
+                    <input type="file" class="form-control" name="imagen" id="imagen" accept="image/*" value="{{ old('imagen') }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Crear producto</button>                
